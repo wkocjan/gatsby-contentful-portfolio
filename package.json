@@ -1,0 +1,61 @@
+{
+  "name": "gatsby-contentful-portfolio",
+  "description": "Portfolio theme for GatsbyJS",
+  "version": "1.0.0",
+  "author": "Wojciech Kocjan <wojciech@kocjan.net>",
+  "dependencies": {
+    "autoprefixer": "^9.7.4",
+    "classnames": "^2.2.6",
+    "dotenv": "^8.2.0",
+    "framer-motion": "^1.8.4",
+    "gatsby": "^2.19.41",
+    "gatsby-image": "^2.2.41",
+    "gatsby-plugin-mailchimp": "^5.1.2",
+    "gatsby-plugin-manifest": "^2.2.42",
+    "gatsby-plugin-postcss": "^2.1.20",
+    "gatsby-plugin-purgecss": "^4.0.1",
+    "gatsby-plugin-react-helmet": "^3.1.22",
+    "gatsby-plugin-sharp": "^2.4.12",
+    "gatsby-source-contentful": "^2.1.96",
+    "gatsby-source-filesystem": "^2.1.54",
+    "gatsby-transformer-sharp": "^2.3.16",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "react-helmet": "^5.2.1",
+    "react-icons": "^3.9.0",
+    "react-id-swiper": "^3.0.0",
+    "swiper": "^5.3.6",
+    "tailwindcss": "^1.2.0",
+    "typeface-inter": "^3.12.0"
+  },
+  "devDependencies": {
+    "chalk": "^3.0.0",
+    "contentful-import": "^7.7.0",
+    "inquirer": "^7.1.0",
+    "prettier": "^1.19.1"
+  },
+  "keywords": [
+    "gatsby",
+    "portfolio",
+    "contentful"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "postinstall": "node ./bin/hello.js",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "setup": "node ./bin/setup.js",
+    "clean": "gatsby clean"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wkocjan/gatsby-contentful-portfolio"
+  },
+  "bugs": {
+    "url": "https://github.com/wkocjan/gatsby-contentful-portfolio/issues"
+  }
+}

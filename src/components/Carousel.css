@@ -1,0 +1,13 @@
+.swiper-container {
+  --swiper-theme-color: theme("colors.blue.500");
+}
+
+.swiper-pagination-bullet {
+  @apply .bg-white;
+}
+
+@screen md {
+  .swiper-pagination-bullet {
+    @apply .w-3 .h-3;
+  }
+}

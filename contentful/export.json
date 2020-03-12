@@ -1,0 +1,1171 @@
+{
+  "contentTypes": [
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "uy3h42sj0upk"
+          }
+        },
+        "id": "portfolio",
+        "type": "ContentType",
+        "createdAt": "2020-03-11T21:38:58.382Z",
+        "updatedAt": "2020-03-11T21:52:30.325Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 9,
+        "publishedAt": "2020-03-11T21:52:30.325Z",
+        "firstPublishedAt": "2020-03-11T21:38:58.972Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "publishedCounter": 5,
+        "version": 10,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        }
+      },
+      "displayField": "name",
+      "name": "Portfolio",
+      "description": "",
+      "fields": [
+        {
+          "id": "name",
+          "name": "Name",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "summary",
+          "name": "Summary",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [
+            {
+              "size": {
+                "max": 80
+              }
+            }
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "slug",
+          "name": "Slug",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [
+            {
+              "unique": true
+            }
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "thumbnail",
+          "name": "Thumbnail",
+          "type": "Link",
+          "localized": false,
+          "required": true,
+          "validations": [
+            {
+              "linkMimetypeGroup": [
+                "image"
+              ]
+            }
+          ],
+          "disabled": false,
+          "omitted": false,
+          "linkType": "Asset"
+        },
+        {
+          "id": "description",
+          "name": "Description",
+          "type": "Text",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "gallery",
+          "name": "Gallery",
+          "type": "Array",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false,
+          "items": {
+            "type": "Link",
+            "validations": [
+              {
+                "linkMimetypeGroup": [
+                  "image"
+                ]
+              },
+              {
+                "assetImageDimensions": {
+                  "width": {
+                    "min": 900,
+                    "max": null
+                  },
+                  "height": {
+                    "min": 600,
+                    "max": null
+                  }
+                }
+              }
+            ],
+            "linkType": "Asset"
+          }
+        },
+        {
+          "id": "url",
+          "name": "External URL",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "related",
+          "name": "Related projects",
+          "type": "Array",
+          "localized": false,
+          "required": false,
+          "validations": [
+            {
+              "size": {
+                "min": 0,
+                "max": 3
+              }
+            }
+          ],
+          "disabled": false,
+          "omitted": false,
+          "items": {
+            "type": "Link",
+            "validations": [
+              {
+                "linkContentType": [
+                  "portfolio"
+                ]
+              }
+            ],
+            "linkType": "Entry"
+          }
+        }
+      ]
+    }
+  ],
+  "editorInterfaces": [
+    {
+      "sys": {
+        "id": "default",
+        "type": "EditorInterface",
+        "space": {
+          "sys": {
+            "id": "uy3h42sj0upk",
+            "type": "Link",
+            "linkType": "Space"
+          }
+        },
+        "version": 10,
+        "createdAt": "2020-03-11T21:38:59.048Z",
+        "createdBy": {
+          "sys": {
+            "id": "5GBl2yAHzXnu8cqPwGEcMy",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "updatedAt": "2020-03-11T21:52:30.777Z",
+        "updatedBy": {
+          "sys": {
+            "id": "5GBl2yAHzXnu8cqPwGEcMy",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "id": "portfolio",
+            "type": "Link",
+            "linkType": "ContentType"
+          }
+        },
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        }
+      },
+      "controls": [
+        {
+          "fieldId": "name",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "summary",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "slug",
+          "widgetId": "slugEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "thumbnail",
+          "widgetId": "assetLinkEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "description",
+          "widgetId": "multipleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "gallery",
+          "widgetId": "assetGalleryEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "url",
+          "widgetId": "urlEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "related",
+          "settings": {
+            "bulkEditing": false
+          },
+          "widgetId": "entryCardsEditor",
+          "widgetNamespace": "builtin"
+        }
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "uy3h42sj0upk"
+          }
+        },
+        "id": "6ybuKsRJxC4IGL1FwuAzen",
+        "type": "Entry",
+        "createdAt": "2020-03-11T21:43:30.668Z",
+        "updatedAt": "2020-03-12T13:55:44.326Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 44,
+        "publishedAt": "2020-03-12T13:55:44.326Z",
+        "firstPublishedAt": "2020-03-11T21:47:52.191Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "publishedCounter": 8,
+        "version": 45,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "portfolio"
+          }
+        }
+      },
+      "fields": {
+        "name": {
+          "en-US": "Iceland"
+        },
+        "summary": {
+          "en-US": "Photos from my trip to Iceland"
+        },
+        "slug": {
+          "en-US": "iceland"
+        },
+        "thumbnail": {
+          "en-US": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Asset",
+              "id": "2rXXfCq7OmHHL4rXDp4uMl"
+            }
+          }
+        },
+        "description": {
+          "en-US": "Aliquam erat volutpat. Pellentesque at neque diam. Pellentesque hendrerit, odio a pellentesque blandit, tellus nisl tempor tellus, placerat consequat ipsum ante finibus augue.\n\nUt porttitor nibh vitae elementum pretium. Morbi varius pulvinar purus, non tempus sem facilisis quis. Vivamus ac vulputate metus, ut fringilla erat."
+        },
+        "gallery": {
+          "en-US": [
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Asset",
+                "id": "2rXXfCq7OmHHL4rXDp4uMl"
+              }
+            },
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Asset",
+                "id": "2hf317UJY21LgAalyf7kgf"
+              }
+            },
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Asset",
+                "id": "YsoKW4AhvPFCKvux2GnzK"
+              }
+            }
+          ]
+        },
+        "url": {
+          "en-US": "https://www.iceland.is"
+        },
+        "related": {
+          "en-US": [
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Entry",
+                "id": "6wJlM7wIdJ6rg55tWt8x2c"
+              }
+            },
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Entry",
+                "id": "cGMSGyWttmfv1RVTaITE3"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "uy3h42sj0upk"
+          }
+        },
+        "id": "6wJlM7wIdJ6rg55tWt8x2c",
+        "type": "Entry",
+        "createdAt": "2020-03-11T21:53:36.798Z",
+        "updatedAt": "2020-03-12T15:14:43.100Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 77,
+        "publishedAt": "2020-03-12T15:14:43.100Z",
+        "firstPublishedAt": "2020-03-11T21:54:21.908Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "publishedCounter": 10,
+        "version": 78,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "portfolio"
+          }
+        }
+      },
+      "fields": {
+        "name": {
+          "en-US": "Spain"
+        },
+        "summary": {
+          "en-US": "Photographies from my trip to Spain"
+        },
+        "slug": {
+          "en-US": "spain"
+        },
+        "thumbnail": {
+          "en-US": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Asset",
+              "id": "4Iqv52VORq3RHI1JUb6KxQ"
+            }
+          }
+        },
+        "description": {
+          "en-US": "Duis posuere porta odio, et finibus ex dapibus at. Quisque condimentum turpis eget ligula congue, ac convallis tortor porta.\n\nEtiam vulputate odio nec ex viverra, a tristique ante tristique. Sed at scelerisque metus. "
+        },
+        "gallery": {
+          "en-US": [
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Asset",
+                "id": "4PwvtBmFDzNSlYyGOuJCBg"
+              }
+            },
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Asset",
+                "id": "4Iqv52VORq3RHI1JUb6KxQ"
+              }
+            }
+          ]
+        },
+        "url": {
+          "en-US": "https://www.spain.info"
+        },
+        "related": {
+          "en-US": [
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Entry",
+                "id": "6ybuKsRJxC4IGL1FwuAzen"
+              }
+            },
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Entry",
+                "id": "cGMSGyWttmfv1RVTaITE3"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "uy3h42sj0upk"
+          }
+        },
+        "id": "cGMSGyWttmfv1RVTaITE3",
+        "type": "Entry",
+        "createdAt": "2020-03-12T13:46:17.514Z",
+        "updatedAt": "2020-03-12T13:55:54.656Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 26,
+        "publishedAt": "2020-03-12T13:55:54.656Z",
+        "firstPublishedAt": "2020-03-12T13:53:43.180Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "publishedCounter": 2,
+        "version": 27,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "portfolio"
+          }
+        }
+      },
+      "fields": {
+        "name": {
+          "en-US": "Poland"
+        },
+        "summary": {
+          "en-US": "Photos from trip to Poland, 2019"
+        },
+        "slug": {
+          "en-US": "poland"
+        },
+        "thumbnail": {
+          "en-US": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Asset",
+              "id": "2pzRh27gIiOAHXkonEritC"
+            }
+          }
+        },
+        "description": {
+          "en-US": "Vestibulum at ipsum non massa viverra accumsan. Praesent id iaculis ex. Mauris nec tortor eros. Nunc in sapien quis nibh congue maximus nec sagittis nunc.\n\nQuisque pretium elit ut ante tincidunt, a interdum neque lobortis. "
+        },
+        "gallery": {
+          "en-US": [
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Asset",
+                "id": "2pzRh27gIiOAHXkonEritC"
+              }
+            },
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Asset",
+                "id": "7lDS5OCqQiJI6JWQwfooTy"
+              }
+            }
+          ]
+        },
+        "url": {
+          "en-US": "https://www.polska.pl/"
+        },
+        "related": {
+          "en-US": [
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Entry",
+                "id": "6wJlM7wIdJ6rg55tWt8x2c"
+              }
+            },
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Entry",
+                "id": "6ybuKsRJxC4IGL1FwuAzen"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "assets": [
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "uy3h42sj0upk"
+          }
+        },
+        "id": "2rXXfCq7OmHHL4rXDp4uMl",
+        "type": "Asset",
+        "createdAt": "2020-03-11T21:43:54.667Z",
+        "updatedAt": "2020-03-11T21:44:21.147Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 7,
+        "publishedAt": "2020-03-11T21:44:21.147Z",
+        "firstPublishedAt": "2020-03-11T21:44:21.147Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 8,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        }
+      },
+      "fields": {
+        "title": {
+          "en-US": "Iceland"
+        },
+        "file": {
+          "en-US": {
+            "url": "//images.ctfassets.net/uy3h42sj0upk/2rXXfCq7OmHHL4rXDp4uMl/391516cf47d399b741aa23c371b295ff/iceland01.jpg",
+            "details": {
+              "size": 127727,
+              "image": {
+                "width": 900,
+                "height": 600
+              }
+            },
+            "fileName": "iceland01.jpg",
+            "contentType": "image/jpeg"
+          }
+        }
+      }
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "uy3h42sj0upk"
+          }
+        },
+        "id": "2hf317UJY21LgAalyf7kgf",
+        "type": "Asset",
+        "createdAt": "2020-03-11T21:44:33.468Z",
+        "updatedAt": "2020-03-11T21:44:54.320Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 5,
+        "publishedAt": "2020-03-11T21:44:54.320Z",
+        "firstPublishedAt": "2020-03-11T21:44:54.320Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 6,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        }
+      },
+      "fields": {
+        "title": {
+          "en-US": "Iceland"
+        },
+        "file": {
+          "en-US": {
+            "url": "//images.ctfassets.net/uy3h42sj0upk/2hf317UJY21LgAalyf7kgf/489c6ba17772f4bc5fd60397482de054/iceland02.jpg",
+            "details": {
+              "size": 84809,
+              "image": {
+                "width": 900,
+                "height": 600
+              }
+            },
+            "fileName": "iceland02.jpg",
+            "contentType": "image/jpeg"
+          }
+        }
+      }
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "uy3h42sj0upk"
+          }
+        },
+        "id": "YsoKW4AhvPFCKvux2GnzK",
+        "type": "Asset",
+        "createdAt": "2020-03-11T21:45:05.020Z",
+        "updatedAt": "2020-03-11T21:45:16.321Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 7,
+        "publishedAt": "2020-03-11T21:45:16.321Z",
+        "firstPublishedAt": "2020-03-11T21:45:16.321Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 8,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        }
+      },
+      "fields": {
+        "title": {
+          "en-US": "Iceland"
+        },
+        "file": {
+          "en-US": {
+            "url": "//images.ctfassets.net/uy3h42sj0upk/YsoKW4AhvPFCKvux2GnzK/a0423854b24dda06a727df23457680d9/iceland03.jpg",
+            "details": {
+              "size": 126788,
+              "image": {
+                "width": 900,
+                "height": 600
+              }
+            },
+            "fileName": "iceland03.jpg",
+            "contentType": "image/jpeg"
+          }
+        }
+      }
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "uy3h42sj0upk"
+          }
+        },
+        "id": "4PwvtBmFDzNSlYyGOuJCBg",
+        "type": "Asset",
+        "createdAt": "2020-03-12T13:42:58.901Z",
+        "updatedAt": "2020-03-12T13:43:20.769Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 5,
+        "publishedAt": "2020-03-12T13:43:20.769Z",
+        "firstPublishedAt": "2020-03-12T13:43:20.769Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 6,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        }
+      },
+      "fields": {
+        "title": {
+          "en-US": "Spain"
+        },
+        "file": {
+          "en-US": {
+            "url": "//images.ctfassets.net/uy3h42sj0upk/4PwvtBmFDzNSlYyGOuJCBg/de2ef5e5ee7156d28ed9b038ac9383b2/spain1.jpg",
+            "details": {
+              "size": 163889,
+              "image": {
+                "width": 1024,
+                "height": 684
+              }
+            },
+            "fileName": "spain1.jpg",
+            "contentType": "image/jpeg"
+          }
+        }
+      }
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "uy3h42sj0upk"
+          }
+        },
+        "id": "4Iqv52VORq3RHI1JUb6KxQ",
+        "type": "Asset",
+        "createdAt": "2020-03-12T13:43:37.075Z",
+        "updatedAt": "2020-03-12T13:43:50.319Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 5,
+        "publishedAt": "2020-03-12T13:43:50.319Z",
+        "firstPublishedAt": "2020-03-12T13:43:50.319Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 6,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        }
+      },
+      "fields": {
+        "title": {
+          "en-US": "Spain"
+        },
+        "file": {
+          "en-US": {
+            "url": "//images.ctfassets.net/uy3h42sj0upk/4Iqv52VORq3RHI1JUb6KxQ/0726f56b5cd387f859579069bc1bb55d/spain2.jpg",
+            "details": {
+              "size": 111508,
+              "image": {
+                "width": 1024,
+                "height": 683
+              }
+            },
+            "fileName": "spain2.jpg",
+            "contentType": "image/jpeg"
+          }
+        }
+      }
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "uy3h42sj0upk"
+          }
+        },
+        "id": "2pzRh27gIiOAHXkonEritC",
+        "type": "Asset",
+        "createdAt": "2020-03-12T13:52:59.387Z",
+        "updatedAt": "2020-03-12T13:53:14.656Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 5,
+        "publishedAt": "2020-03-12T13:53:14.656Z",
+        "firstPublishedAt": "2020-03-12T13:53:14.656Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 6,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        }
+      },
+      "fields": {
+        "title": {
+          "en-US": "Poland"
+        },
+        "file": {
+          "en-US": {
+            "url": "//images.ctfassets.net/uy3h42sj0upk/2pzRh27gIiOAHXkonEritC/008f0035cc2b9d129b8382c5a26b82f3/poland1.jpg",
+            "details": {
+              "size": 156784,
+              "image": {
+                "width": 1024,
+                "height": 681
+              }
+            },
+            "fileName": "poland1.jpg",
+            "contentType": "image/jpeg"
+          }
+        }
+      }
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "uy3h42sj0upk"
+          }
+        },
+        "id": "7lDS5OCqQiJI6JWQwfooTy",
+        "type": "Asset",
+        "createdAt": "2020-03-12T13:53:24.071Z",
+        "updatedAt": "2020-03-12T13:53:39.922Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 5,
+        "publishedAt": "2020-03-12T13:53:39.922Z",
+        "firstPublishedAt": "2020-03-12T13:53:39.922Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 6,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        }
+      },
+      "fields": {
+        "title": {
+          "en-US": "Poland"
+        },
+        "file": {
+          "en-US": {
+            "url": "//images.ctfassets.net/uy3h42sj0upk/7lDS5OCqQiJI6JWQwfooTy/bcdc1841ddb5690a1478a12fd26ef58a/poland2.jpg",
+            "details": {
+              "size": 165085,
+              "image": {
+                "width": 1024,
+                "height": 683
+              }
+            },
+            "fileName": "poland2.jpg",
+            "contentType": "image/jpeg"
+          }
+        }
+      }
+    }
+  ],
+  "locales": [
+    {
+      "name": "English (United States)",
+      "code": "en-US",
+      "fallbackCode": null,
+      "default": true,
+      "contentManagementApi": true,
+      "contentDeliveryApi": true,
+      "optional": false,
+      "sys": {
+        "type": "Locale",
+        "id": "4p7VjiICdBr5pbo5mRt2b3",
+        "version": 1,
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "uy3h42sj0upk"
+          }
+        },
+        "environment": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Environment",
+            "id": "master"
+          }
+        },
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "createdAt": "2020-03-11T21:31:17Z",
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5GBl2yAHzXnu8cqPwGEcMy"
+          }
+        },
+        "updatedAt": "2020-03-11T21:31:17Z"
+      }
+    }
+  ],
+  "webhooks": [
+  ],
+  "roles": [
+  ]
+}
