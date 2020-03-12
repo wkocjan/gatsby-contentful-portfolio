@@ -1,11 +1,9 @@
-import classNames from "classnames"
 import { graphql, Link, useStaticQuery } from "gatsby"
-import PropTypes from "prop-types"
 import React, { useState } from "react"
 import MenuMobile from "./MenuMobile"
 import { FaBars } from "react-icons/fa"
 
-const Header = ({ isHome }) => {
+const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const { site } = useStaticQuery(graphql`
@@ -25,11 +23,7 @@ const Header = ({ isHome }) => {
     <div className="container pt-6 pb-12 md:pt-12">
       <div className="flex justify-between items-center">
         <Link to="/">
-          <img
-            alt="Logo"
-            className={classNames("w-24 md:w-32", { invisible: isHome })}
-            src="logo.svg"
-          />
+          <img alt="Logo" className="w-24 md:w-32" src="logo.svg" />
         </Link>
 
         <button
@@ -60,14 +54,6 @@ const Header = ({ isHome }) => {
       />
     </div>
   )
-}
-
-Header.propTypes = {
-  isHome: PropTypes.bool,
-}
-
-Header.defaultProps = {
-  isHome: false,
 }
 
 export default Header

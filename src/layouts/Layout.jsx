@@ -5,12 +5,11 @@ import "../styles/style.css"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
 
-const Layout = ({ children, isHome = false }) => {
+const Layout = ({ children }) => {
   return (
     <>
-      <Header isHome={isHome} />
+      <Header />
       {children}
-
       <Footer />
     </>
   )
