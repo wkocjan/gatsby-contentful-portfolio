@@ -1,6 +1,13 @@
 # Portfolio theme for Gatsby
 
-Gatsby starter theme integrated with [Contentful](https://www.contentful.com)
+### Gatsby starter theme integrated with [Contentful](https://www.contentful.com)
+
+## Demo
+
+Live demo is available at:
+https://gatsby-contentful-portfolio.netlify.com/
+
+## Screenshot
 
 ![The home page](screenshot.png?raw=true)
 
@@ -21,7 +28,7 @@ Gatsby starter theme integrated with [Contentful](https://www.contentful.com)
 
 ## Getting started
 
-Install [NPM](https://nodejs.org/) (if you haven't already).
+Install [Node package manager (NPM)](https://nodejs.org/) (if you haven't already).
 
 ## Requirements
 
