@@ -2,7 +2,7 @@
 
 Gatsby starter theme integrated with [Contentful](https://www.contentful.com)
 
-![The home page](screenshot.jpg?raw=true)
+![The home page](screenshot.png?raw=true)
 
 ## Who is this for?
 
@@ -50,10 +50,10 @@ Follow [this instruction](https://www.gatsbyjs.org/packages/gatsby-plugin-mailch
 
 This project comes with a few handy commands for linting and code fixing. The most important ones are the ones to develop and ship code. You can find the most important commands below.
 
-### `gatsby develop`
+#### `gatsby develop`
 
 Run in the project locally.
 
-### `gatsby build`
+#### `gatsby build`
 
 Run a production build into `./public`. The result is ready to be put on any static hosting you prefer.
