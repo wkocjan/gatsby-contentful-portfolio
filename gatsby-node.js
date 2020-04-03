@@ -3,11 +3,11 @@ const path = require(`path`)
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions
   const typeDefs = `
-    type contentfulPortfolioDescription {
+    type contentfulPortfolioDescriptionTextNode implements Node {
       description: String
     }
     type ContentfulPortfolio implements Node {
-      description: contentfulPortfolioDescription
+      description: contentfulPortfolioDescriptionTextNode
       gallery: [ContentfulAsset]
       id: ID!
       name: String!
