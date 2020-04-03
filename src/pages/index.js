@@ -14,7 +14,11 @@ const IndexPage = ({ data }) => {
       <Hero />
 
       <div className="bg-gray-100 py-12 lg:py-16">
-        <Cards items={data.portfolio.nodes} />
+        {data.portfolio && data.portfolio.nodes.length > 0 ? (
+          <Cards items={data.portfolio.nodes} />
+        ) : (
+          <div className="container">No projects found.</div>
+        )}
       </div>
       <Newsletter />
     </Layout>
