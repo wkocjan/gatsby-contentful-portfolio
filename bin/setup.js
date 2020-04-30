@@ -25,9 +25,6 @@ console.log(`
   The ${chalk.green("Content Delivery API Token")}
     will be used to ship published production-ready content in your Gatsby app.
 
-  The ${chalk.green("Content Preview API Token")}
-    will be used to show not published data in your development environment.
-
   Ready? Let's do it! 🎉
 `)
 
