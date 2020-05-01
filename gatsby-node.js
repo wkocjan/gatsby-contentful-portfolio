@@ -15,7 +15,22 @@ exports.createSchemaCustomization = ({ actions }) => {
       slug: String!
       summary: String!
       thumbnail: ContentfulAsset
-      url: String
+      url: String,
+      category: String!
+    }
+    type contentfulBlogPostBodyTextNode implements Node {
+      body: String
+    }
+    type ContentfulBlogPost implements Node {
+      id: ID!
+      name: String!
+      description: contentfulBlogPostDescriptionTextNode
+      title: String
+      body: contentfulBlogPostBodyTextNode
+      publishDate: Date
+      slug: String!
+      author: ContentfulPerson
+      category: String
     }
   `
   createTypes(typeDefs)
@@ -32,6 +47,11 @@ exports.createPages = ({ graphql, actions }) => {
             slug
           }
         }
+        blog: allContentfulBlogPost {
+          nodes {
+            slug
+          }
+        }
       }
     `).then(({ errors, data }) => {
       if (errors) {
@@ -39,11 +59,19 @@ exports.createPages = ({ graphql, actions }) => {
       }
 
       if (data && data.portfolio) {
-        const component = path.resolve("./src/templates/portfolio-item.jsx")
+        const portfolioTemplate = path.resolve("./src/templates/portfolio-item.jsx")
+        const blogTemplate = path.resolve("./src/templates/blog-post.jsx")
         data.portfolio.nodes.map(({ slug }) => {
           createPage({
-            path: `/${slug}`,
-            component,
+            path: `/portfolio/${slug}`,
+            component: portfolioTemplate,
+            context: { slug },
+          })
+        })
+        data.blog.nodes.map(({ slug }) => {
+          createPage({
+            path: `/blog/${slug}`,
+            component: blogTemplate,
             context: { slug },
           })
         })

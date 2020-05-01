@@ -28,7 +28,7 @@ const Newsletter = () => {
   }
 
   return (
-    <div className="container py-12 lg:py-16">
+    <div className="container py-12 lg:py-16 invisible">
       <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight tracking-tight">
         Sign up for my newsletter
       </h2>

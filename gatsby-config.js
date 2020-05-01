@@ -13,17 +13,23 @@ module.exports = {
     menu: [
       { name: "Home", to: "/" },
       { name: "About", to: "/about" },
+      { name: "Blog", to: "/blog"},
+      { name: "Portfolio", to: "/portfolio"}
     ],
     links: {
-      facebook: "https://www.facebook.com/",
-      instagram: "https://www.instagram.com/",
-      pinterest: "https://pinterest.com/",
-      twitter: "https://twitter.com/",
+      facebook: "https://www.facebook.com/kranthilakum",
+      instagram: "https://www.instagram.com/krantlak",
+      pinterest: "https://pinterest.com/kranthilakum",
+      twitter: "https://twitter.com/krantlak",
+      linkedin: "https://www.linkedin.com/in/kranthilakum/",
+      github: "https://www.github.com/kranthilakum",
+      flickr: "https://www.flickr.com/photos/prince-apple/",
+      stackOverflow: "https://stackoverflow.com/users/1509209/kranthi-lakum"
     },
     locale: "en",
-    title: `John Doe`,
-    description: `Photography portfolio of John Doe`,
-    author: `@johndoe`,
+    title: `Kranthi Lakum`,
+    description: `Blog and personal website of Kranthi Lakum`,
+    author: `Kranthi Lakum`,
   },
   plugins: [
     `gatsby-plugin-postcss`,
@@ -43,6 +49,7 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    `gatsby-transformer-remark`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -54,8 +61,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `John Doe`,
-        short_name: `johndoe`,
+        name: `Kranthi Lakum`,
+        short_name: `krantlak`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#3182ce`,
@@ -73,5 +80,14 @@ module.exports = {
         ignore: ["Carousel.css", "swiper.css"],
       },
     },
+    {
+      resolve: `gatsby-remark-prismjs`,
+      options: {
+        classPrefix: "language-",
+        inlineCodeMarker: null,
+        showLineNumbers: false,
+        noInlineHighlight: false,
+      }
+    }
   ],
 }

@@ -1,21 +1,34 @@
 import { graphql, useStaticQuery } from "gatsby"
 import React from "react"
-import { FaFacebook, FaInstagram, FaTwitter, FaPinterest } from "react-icons/fa"
+import {
+  FaFacebook,
+  FaInstagram,
+  FaTwitter,
+  FaPinterest,
+  FaGithub,
+  FaLinkedin,
+  FaFlickr,
+  FaStackOverflow} from "react-icons/fa"
 
 const Footer = () => {
+  const year = (new Date()).getFullYear();
   const {
     site: {
-      meta: { links },
+      meta: { author, links },
     },
   } = useStaticQuery(graphql`
     query FooterQuery {
       site {
         meta: siteMetadata {
+          author
           links {
             facebook
             instagram
             pinterest
             twitter
+            linkedin
+            stackOverflow
+            flickr
           }
         }
       }
@@ -25,6 +38,9 @@ const Footer = () => {
   return (
     <div className="container py-12 md:flex md:items-center md:justify-between">
       <ul className="flex justify-center md:order-2">
+        <FooterLink href={links.github} icon={FaGithub} label="Github" />
+        <FooterLink href={links.linkedin} icon={FaLinkedin} label="Linkedin" />
+        <FooterLink href={links.stackOverflow} icon={FaStackOverflow} label="StackOverflow" />
         <FooterLink href={links.twitter} icon={FaTwitter} label="Twitter" />
         <FooterLink href={links.facebook} icon={FaFacebook} label="Facebook" />
         <FooterLink
@@ -37,10 +53,11 @@ const Footer = () => {
           icon={FaPinterest}
           label="Pinterest"
         />
+        <FooterLink href={links.flickr} icon={FaFlickr} label="Flickr" />
       </ul>
       <div className="mt-8 md:mt-0 md:order-1">
         <p className="text-center text-sm md:text-base text-gray-700">
-          &copy; 2020 John Doe. All rights reserved.
+          &copy; {year} {author}. All rights reserved.
         </p>
       </div>
     </div>

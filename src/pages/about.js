@@ -16,35 +16,44 @@ const AboutPage = ({ data }) => (
             <h1 className="text-3xl leading-tight font-extrabold tracking-tight text-gray-900 sm:text-4xl">
               About me
             </h1>
-
             <h2 className="text-xl leading-tight font-semibold tracking-tight text-blue-600 sm:text-2xl">
-              Interdum et malesuada fames ac ante.
+              non nobis, sed omnibus | not for us, but for everyone
             </h2>
             <div className="mt-4 leading-loose">
-              Curabitur non hendrerit dolor. Interdum et malesuada fames ac ante
-              ipsum primis in faucibus. Ut&nbsp;sapien ex, fringilla sed
-              consectetur et, pharetra eget lacus.
+              <p>
+                <strong>Kranthi Lakum</strong> is a software developer based in Hyderabad, India.
+                He works as a full-time software engineer for a Finnish Telecom software provider.
+                He has experience in designing and developing software applications for the Web and Mobile platforms in
+                Big-Data, E-business, Insurance, Health-care, and Telecommunication business domains. He mainly works with application development involving Java, Scala, Python, and JavaScript languages.
+                You can always reach him out at his email or any of the social networks. He is always open to new challenges and opportunities!
+              </p>
               <br />
+              <div>
+                  <strong>Favorite Quotes</strong>
+                  <blockquote>
+                      If you are not willing to learn, no one can help you.
+                      If you are determined to learn, no one can stop you.
+                  </blockquote>
+                  <blockquote>
+                      Nothing stops you from being distinctive.
+                      The only one who stops you is yourself.
+                      Everything is within you.
+                  </blockquote>
+                  <blockquote>Nothing is over until you stop trying.</blockquote>
+              </div>
               <br />
-              Morbi sem leo, varius ut tempus et, tempor sit amet nibh.
-              Curabitur fermentum feugiat libero, sed egestas lorem aliquam et.
-              Praesent id mi purus. Morbi sem leo, varius ut tempus et, tempor
-              sit amet nibh.
-              <br />
-              <br />
-              I'm happy to hear from you:
-              <br />
+              I'm happy to hear from you. Reach me at my&nbsp;
               <a
-                href="mailto:contact@johndoe.com"
+                href={"mailto:" + data.author.email}
                 className="border-b border-gray-500 hover:border-blue-600 hover:text-blue-600"
               >
-                contact@johndoe.com
+                E-mail
               </a>
             </div>
           </div>
           <div className="w-full md:w-1/2 xl:w-2/5 md:pl-12">
             <Img
-              fluid={data.author.childImageSharp.fluid}
+              fluid={data.authorImage.childImageSharp.fluid}
               alt="John Doe"
               className="rounded-md shadow-md"
             />
@@ -60,7 +69,10 @@ export default AboutPage
 
 export const query = graphql`
   query {
-    author: file(relativePath: { eq: "author.jpg" }) {
+    author: contentfulPerson {
+      email
+    }
+    authorImage: file(relativePath: { eq: "author.jpg" }) {
       childImageSharp {
         fluid(maxWidth: 600, maxHeight: 480, quality: 85) {
           ...GatsbyImageSharpFluid_withWebp

@@ -23,7 +23,7 @@ const Header = () => {
     <div className="container pt-6 pb-12 md:pt-12">
       <div className="flex justify-between items-center">
         <Link to="/">
-          <img alt="Logo" className="w-24 md:w-32" src="logo.svg" />
+          <img alt="Logo" className="w-24 md:w-40" src="logo.svg" />
         </Link>
 
         <button
