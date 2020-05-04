@@ -63,15 +63,5 @@ module.exports = {
         icon: `src/images/icon.png`,
       },
     },
-    {
-      resolve: `gatsby-plugin-purgecss`,
-      options: {
-        develop: false,
-        printRejected: false,
-        rejected: true,
-        tailwind: true,
-        ignore: ["Carousel.css", "swiper.css"],
-      },
-    },
   ],
 }
