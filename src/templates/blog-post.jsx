@@ -8,14 +8,14 @@ export default props => {
   const {
     title,
     summary,
-    body
+    description
   } = props.data.item
 
   return (
     <Layout>
       <SiteMetadata
         title={title}
-        description={summary.description}
+        description={summary}
       />
       <div className="bg-gray-0 py-12 lg:py-16">
         <div className="container">
@@ -24,10 +24,10 @@ export default props => {
               <h1 className="text-3xl leading-tight font-extrabold tracking-tight text-gray-900 sm:text-4xl mb-1">
                 {title}
               </h1>
-              {body && (
+              {description && (
                 <div className="my-4 text-base text-gray-800 whitespace-pre-line">
                   <p dangerouslySetInnerHTML={{
-                    __html: body.childMarkdownRemark.html,
+                    __html: description.childMarkdownRemark.html,
                   }}></p>
                 </div>
               )}
@@ -41,13 +41,11 @@ export default props => {
 }
 
 export const query = graphql`
-  query BlogtemQuery($slug: String!) {
+  query BlogItemQuery($slug: String!) {
     item: contentfulBlogPost(slug: { eq: $slug }) {
-      summary: description {
-        description
-      }
       title
-      body {
+      summary
+      description {
         childMarkdownRemark {
           html
         }

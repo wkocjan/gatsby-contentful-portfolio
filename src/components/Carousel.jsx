@@ -8,6 +8,10 @@ import "./Carousel.css"
 
 export const Carousel = ({ images }) => {
   const swiperParams = {
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false
+    },
     pagination: {
       el: ".swiper-pagination",
       type: "bullets",

@@ -106,9 +106,9 @@ Install `react-helmet` and `gatsby-plugin-react-helmet@latest`
 
 Install `gatsby-transformer-remark` as a dependency.
 
-**[Issue #1227](https://github.com/gaearon/react-hot-loader/issues/1227) - React-Hot-Loader: react-🔥-dom patch is not detected. React 16.6+ features may not work.
+**[Issue #1227](https://github.com/gaearon/react-hot-loader/issues/1227)** - React-Hot-Loader: react-🔥-dom patch is not detected. React 16.6+ features may not work.
 
-Add the matched version for react-hot-dom in your package file `"@hot-loader/react-dom": "^16.8.6"`, and in your webpack config, you need to add `alias: { 'react-dom': '@hot-loader/react-dom' }`
+In package.json file, replace `react-dom` inside dependencies with `@hot-loader/react-dom`
 
 ## Links
 - [MethodDraw SVG Editor](https://editor.method.ac/)
@@ -116,3 +116,4 @@ Add the matched version for react-hot-dom in your package file `"@hot-loader/rea
 - [Netlify](https://netlify.com/)
 - [Contentful](https://www.contentful.com)
 - [Gatsby](https://www.gatsbyjs.org/)
+- [React-Id-Swiper](https://react-id-swiper.ashernguyen.site/)

@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "Wojciech Kocjan <wojciech@kocjan.net>",
   "dependencies": {
+    "@hot-loader/react-dom": "^16.13.0",
     "autoprefixer": "^9.7.4",
     "classnames": "^2.2.6",
     "dotenv": "^8.2.0",
@@ -23,7 +24,7 @@
     "gatsby-transformer-sharp": "^2.3.16",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
-    "react-dom": "^16.13.0",
+    "react-dom": "^16.13.1",
     "react-helmet": "^5.2.1",
     "react-icons": "^3.9.0",
     "react-id-swiper": "^3.0.0",

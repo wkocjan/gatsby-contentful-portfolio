@@ -3,7 +3,7 @@
 }
 
 .swiper-pagination-bullet {
-  @apply .bg-white;
+  @apply .bg-black;
 }
 
 @screen md {

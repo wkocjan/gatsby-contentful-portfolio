@@ -23,6 +23,7 @@ const Cards = ({ items, hideLastItemOnMobile = false }) => {
 }
 
 Cards.propTypes = {
+  title: PropTypes.string,
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 

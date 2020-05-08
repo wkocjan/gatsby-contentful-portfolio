@@ -4,32 +4,25 @@ import PropTypes from "prop-types"
 import React from "react"
 
 const Card = props => {
-  const { category, name, slug, summary, description, thumbnail } = props
-
+  const { id, category, name, slug, summary, thumbnail } = props
+  const categories = ['blog', 'portfolio']
   return (
     <div className="bg-white h-full shadow-sm rounded-md overflow-hidden group">
-      {category && category === 'portfolio' && (
-        <Link to={`/portfolio/${slug}`}>
-          <div className="group-hover:opacity-75 transition duration-150 ease-in-out">
-            <Img fluid={thumbnail.localFile.childImageSharp.fluid} alt={name} />
-          </div>
-          <div className="p-4 sm:p-5">
-            <h1 className="sm:text-lg text-gray-900 font-semibold">{name}</h1>
-            <p className="text-sm sm:text-base text-gray-700">{summary}</p>
-          </div>
-        </Link>
-      )}
-      {category && category === 'blog' && (
-        <Link to={`/blog/${slug}`}>
-          <div className="group-hover:opacity-75 transition duration-150 ease-in-out">
-            <Img fluid={thumbnail.localFile.childImageSharp.fluid} alt={name} />
-          </div>
-          <div className="p-4 sm:p-5">
-            <h1 className="sm:text-lg text-gray-900 font-semibold">{name}</h1>
-            <p className="text-sm sm:text-base text-gray-700">{summary.description}</p>
-          </div>
-        </Link>
-      )}
+      {categories.map(item => {
+        return (
+          category && category === item && (
+            <Link key={id} to={`/${item}/${slug}`}>
+              <div className="group-hover:opacity-75 transition duration-150 ease-in-out">
+                <Img fluid={thumbnail.localFile.childImageSharp.fluid} alt={name} />
+              </div>
+              <div className="p-4 sm:p-5">
+                <h1 className="sm:text-lg text-gray-900 font-semibold">{name}</h1>
+                <p className="text-sm sm:text-base text-gray-700">{summary}</p>
+              </div>
+            </Link>
+          )
+        )
+      })}
     </div>
   )
 }
@@ -70,9 +63,7 @@ export const query = graphql`
     category
     name: title
     tags
-    summary: description {
-      description
-    }
+    summary
     publishDate
     slug
     thumbnail: heroImage {

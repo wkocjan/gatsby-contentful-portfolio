@@ -7,25 +7,20 @@ import Newsletter from "../components/Newsletter"
 import SiteMetadata from "../components/SiteMetadata"
 
 const IndexPage = ({ data }) => {
+  const cardData = [data.blog.nodes, data.portfolio.nodes]
   return (
     <Layout>
-      <SiteMetadata title="Home" description="Portfolio of John Doe" />
+      <SiteMetadata title="Home" description="Blog and Portfolio of Kranthi Lakum" />
 
       <Hero data={data.hero.nodes} />
 
       <div className="bg-gray-100 py-12 lg:py-16">
-        {data.blog && data.blog.nodes.length > 0 ? (
-          <Cards items={data.blog.nodes} />
-        ) : (
-          <div className="container">No posts found.</div>
-        )}
-      </div>
-      <hr />
-      <div className="bg-gray-100 py-12 lg:py-16">
-        {data.portfolio && data.portfolio.nodes.length > 0 ? (
-          <Cards items={data.portfolio.nodes} />
-        ) : (
-          <div className="container">No projects found.</div>
+        {cardData && cardData.map((item, index) =>
+          item && item.length > 0 ? (
+            <Cards key={index} items={item} />
+          ) : (
+            <div className="container">No posts found.</div>
+          )
         )}
       </div>
       <Newsletter />

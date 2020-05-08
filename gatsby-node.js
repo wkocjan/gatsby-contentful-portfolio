@@ -18,15 +18,16 @@ exports.createSchemaCustomization = ({ actions }) => {
       url: String,
       category: String!
     }
-    type contentfulBlogPostBodyTextNode implements Node {
-      body: String
+    type contentfulBlogPostDescriptionTextNode implements Node {
+      description: String
+      childMarkdownRemark: MarkdownRemark
     }
     type ContentfulBlogPost implements Node {
       id: ID!
       name: String!
+      summary: String
       description: contentfulBlogPostDescriptionTextNode
       title: String
-      body: contentfulBlogPostBodyTextNode
       publishDate: Date
       slug: String!
       author: ContentfulPerson
@@ -60,7 +61,6 @@ exports.createPages = ({ graphql, actions }) => {
 
       if (data && data.portfolio) {
         const portfolioTemplate = path.resolve("./src/templates/portfolio-item.jsx")
-        const blogTemplate = path.resolve("./src/templates/blog-post.jsx")
         data.portfolio.nodes.map(({ slug }) => {
           createPage({
             path: `/portfolio/${slug}`,
@@ -68,6 +68,10 @@ exports.createPages = ({ graphql, actions }) => {
             context: { slug },
           })
         })
+      }
+
+      if (data && data.blog) {
+        const blogTemplate = path.resolve("./src/templates/blog-post.jsx")
         data.blog.nodes.map(({ slug }) => {
           createPage({
             path: `/blog/${slug}`,
@@ -80,4 +84,14 @@ exports.createPages = ({ graphql, actions }) => {
       resolve()
     })
   })
+}
+
+exports.onCreateWebpackConfig = ({ getConfig, stage }) => {
+  const config = getConfig()
+  if (stage.startsWith('develop') && config.resolve) {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'react-dom': '@hot-loader/react-dom'
+    }
+  }
 }

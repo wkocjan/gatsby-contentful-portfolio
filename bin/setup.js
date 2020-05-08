@@ -1,5 +1,6 @@
 const spaceImport = require("contentful-import")
 const exportFile = require("../contentful/export.json")
+// const exportFile = require("../contentful/export-dev.json")
 const inquirer = require("inquirer")
 const chalk = require("chalk")
 const path = require("path")
@@ -81,5 +82,14 @@ inquirer
   })
   .then(({ spaceId, managementToken }) => {
     spaceImport({ spaceId, managementToken, content: exportFile })
+    .then(() => {
+      console.log('')
+      console.log(
+        `All set! You can now run ${chalk.yellow(
+          'npm run develop'
+        )} to see it in action.`
+      )
+      console.log('')
+    })
   })
   .catch(error => console.error(error))

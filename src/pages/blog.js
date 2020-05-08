@@ -8,7 +8,7 @@ import SiteMetadata from "../components/SiteMetadata"
 const BlogPage = ({ data }) => {
   return (
     <Layout>
-      <SiteMetadata title="Blog" description="Portfolio of John Doe" />
+      <SiteMetadata title="Blog" description="Blog of Kranthi Lakum" />
 
       <div className="bg-gray-100 py-12 lg:py-16">
         {data.blog && data.blog.nodes.length > 0 ? (
@@ -32,7 +32,8 @@ export const query = graphql`
         category
         name: title
         tags
-        summary: description {
+        summary
+        description {
           description
         }
         publishDate

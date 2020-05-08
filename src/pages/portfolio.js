@@ -8,7 +8,7 @@ import SiteMetadata from "../components/SiteMetadata"
 const PortfolioPage = ({ data }) => {
   return (
     <Layout>
-      <SiteMetadata title="Porfolio" description="Portfolio of John Doe" />
+      <SiteMetadata title="Porfolio" description="Portfolio of Kranthi Lakum" />
 
       <div className="bg-gray-100 py-12 lg:py-16">
         {data.portfolio && data.portfolio.nodes.length > 0 ? (
