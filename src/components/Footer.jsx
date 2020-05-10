@@ -22,6 +22,7 @@ const Footer = () => {
         meta: siteMetadata {
           author
           links {
+            github
             facebook
             instagram
             pinterest

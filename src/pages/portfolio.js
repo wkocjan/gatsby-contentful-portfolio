@@ -22,7 +22,7 @@ const PortfolioPage = ({ data }) => {
       <hr />
 
       <div className="bg-gray-100">
-        <WorldMap />
+        <WorldMap data={data.author.locations} />
       </div>
 
       <Newsletter />
@@ -37,6 +37,25 @@ export const query = graphql`
     portfolio: allContentfulPortfolio {
       nodes {
         ...PortfolioCard
+      }
+    }
+    author: contentfulPerson {
+      locations {
+        placesLived {
+          name
+          duration
+          coordinates
+        }
+        placesTransited {
+          name
+          duration
+          coordinates
+        }
+        placesVisited {
+          coordinates
+          duration
+          name
+        }
       }
     }
   }
