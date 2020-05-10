@@ -1,5 +1,6 @@
 import { graphql } from "gatsby"
 import React from "react"
+import WorldMap from "../components/world-map/WorldMap"
 import Cards from "../components/Cards"
 import Layout from "../layouts/Layout"
 import Newsletter from "../components/Newsletter"
@@ -17,6 +18,13 @@ const PortfolioPage = ({ data }) => {
           <div className="container">No projects found.</div>
         )}
       </div>
+
+      <hr />
+
+      <div className="bg-gray-100">
+        <WorldMap />
+      </div>
+
       <Newsletter />
     </Layout>
   )

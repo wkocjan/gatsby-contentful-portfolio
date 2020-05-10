@@ -7,6 +7,7 @@
     "@hot-loader/react-dom": "^16.13.0",
     "autoprefixer": "^9.7.4",
     "classnames": "^2.2.6",
+    "d3-geo": "^1.12.0",
     "dotenv": "^8.2.0",
     "framer-motion": "^1.8.4",
     "gatsby": "^2.19.41",
@@ -17,6 +18,7 @@
     "gatsby-plugin-purgecss": "^4.0.1",
     "gatsby-plugin-react-helmet": "^3.1.22",
     "gatsby-plugin-sharp": "^2.4.12",
+    "gatsby-remark-mathjax": "^1.0.0",
     "gatsby-remark-prismjs": "^3.5.0",
     "gatsby-source-contentful": "^2.1.96",
     "gatsby-source-filesystem": "^2.1.54",
@@ -30,6 +32,7 @@
     "react-id-swiper": "^3.0.0",
     "swiper": "^5.3.6",
     "tailwindcss": "^1.2.0",
+    "topojson-client": "^3.1.0",
     "typeface-inter": "^3.12.0"
   },
   "devDependencies": {
