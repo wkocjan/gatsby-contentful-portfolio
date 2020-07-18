@@ -26,9 +26,7 @@ export default props => {
               </h1>
               {description && (
                 <div className="my-4 text-base text-gray-800 whitespace-pre-line">
-                  <p dangerouslySetInnerHTML={{
-                    __html: description.childMarkdownRemark.html,
-                  }}></p>
+                  <article dangerouslySetInnerHTML={{__html: description.childMarkdownRemark.html}}></article>
                 </div>
               )}
             </div>

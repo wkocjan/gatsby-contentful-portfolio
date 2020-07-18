@@ -3,9 +3,14 @@ import { geoMercator, geoPath } from "d3-geo"
 import { feature } from "topojson-client"
 import worldData from './world.json'
 
+let defaultWidth
+
+if (typeof window !== `undefined`) {
+  defaultWidth = window.innerWidth
+}
+
 const WorldMap = ({data}) => {
-  console.log({data});
-  const [isDesktop] = useState(window.innerWidth > 1440);
+  const [isDesktop] = useState(defaultWidth > 1440);
   const [worlddata] = useState(feature(worldData, worldData.objects.countries).features);
   const [placesLived] = useState(data.placesLived);
   const [placesVisited] = useState(data.placesVisited);
@@ -18,11 +23,11 @@ const WorldMap = ({data}) => {
   }
 
   const handleCountryClick = (countryIndex) => {
-    console.log("Clicked on country: ", worlddata[countryIndex])
+    console.info("Clicked on country: ", worlddata[countryIndex])
   }
 
   const handleMarkerClick = (i) => {
-    console.log("Marker: ", placesLived[i].name)
+    console.info("Marker: ", placesLived[i].name)
   }
 
   return (

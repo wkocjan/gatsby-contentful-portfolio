@@ -25,20 +25,22 @@ const AboutPage = ({ data }) => {
             <div className="mt-4 leading-loose">
               <p>
                 I'm <strong>Kranthi Lakum</strong>, a software developer based in Hyderabad, India.
-                I have {experience} years of experience in designing and developing software applications for the Web and Mobile platforms in
+                I have {experience} years of experience in developing software applications for the Web and Mobile platforms in
                 Big-Data, E-business, Insurance, Health-care, and Telecommunication business domains.
               </p>
               <p>
-              I mainly works with Java, Scala, Python, and JavaScript languages.
+              I mainly work with Java, Scala, Python, JavaScript, and TypeScript languages.
               You can always reach me out at my email. I am always open to new challenges and opportunities!
               </p>
-              I'm happy to hear from you. You can reach me at my&nbsp;
+              I'm happy to hear from you. You can reach me out at my&nbsp;
               <a
                 href={"mailto:" + data.author.email}
                 className="border-b border-gray-500 hover:border-blue-600 hover:text-blue-600"
               >
                 E-mail
-              </a>
+              </a> or <a
+                className="border-b border-gray-500 hover:border-blue-600 hover:text-blue-600"
+                href="https://www.linkedin.com/in/kranthilakum/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
               <br />
               <br />
               <div>
