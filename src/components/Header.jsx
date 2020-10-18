@@ -41,6 +41,7 @@ const Header = () => {
               className="ml-6 sm:ml-8 text-sm sm:text-base font-medium px-px border-b-2 pb-2 border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-200 transition duration-150 ease-in-out"
               activeClassName="border-blue-600 text-gray-900 hover:border-blue-600"
               to={link.to}
+              data-cy={link.name}
             >
               {link.name}
             </Link>

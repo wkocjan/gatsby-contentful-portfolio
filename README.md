@@ -2,7 +2,18 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/5db30996-3abd-4a1f-bfbf-8c100e86dbbb/deploy-status)](https://app.netlify.com/sites/kranthilakum/deploys)
 
+## Screenshot
+
+![The home page](screenshot.png?raw=true)
+
 ### Gatsby starter theme integrated with [Contentful](https://www.contentful.com)
+
+[![Gatsby](https://img.shields.io/badge/🌐-Gatsby-%23542c85)](https://gatsbyjs.com)
+[![Reactjs](https://img.shields.io/badge/🌐-ReactJs-%2361dafb)](https://www.reactjs.org)
+[![Netlify](https://img.shields.io/badge/🌐-Netlify-teal)](https://www.netlify.com)
+[![Contentful](https://img.shields.io/badge/🌐-Contentful-%23306bc4)](https://www.contentful.com)
+[![Mailchimp](https://img.shields.io/badge/🌐-Mailchimp-%23004e56)](https://mailchimp.com)
+[![Earthly](https://img.shields.io/badge/🌐-Earthly-blue)](https://earthly.dev)
 
 ## Demo
 
