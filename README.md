@@ -96,6 +96,24 @@ After initial authorization, the CLI stores auth token in `~/.netlify/config.jso
 - `netlify open:site` - open deployed site
 - `netlify deploy` - trigger a deploy on Netlify
 
+## Dockerize
+```bash
+docker build . -t g-portfolio:1.0.0
+
+docker run -d -p 8000:8000 --name g-portfolio g-portfolio:1.0.0
+```
+OR
+```bash
+# Build images before starting containers.
+docker-compose up --build
+
+# Run built image in a container
+docker-compose up
+
+# Stops and removes container
+docker-compose down
+```
+
 ## Troubleshooting Issues
 
 **[Issue #17173](https://github.com/gatsbyjs/gatsby/issues/17173)**: Unable to find plugin "gatsby-plugin-sharp"

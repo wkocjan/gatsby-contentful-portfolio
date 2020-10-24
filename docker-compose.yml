@@ -1,0 +1,15 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - /var/www/node_modules
+      - ./public:/var/www/public
+    command: npm run build
+    env_file: .env
+    environment:
+      - NODE_ENV=production gatsby build
