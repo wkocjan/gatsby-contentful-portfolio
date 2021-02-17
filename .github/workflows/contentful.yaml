@@ -1,0 +1,35 @@
+name: CI
+on:
+  repository_dispatch:
+    types: [publish-event]
+
+jobs:
+
+  create_or_update_infrastructure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout-branch
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - name: Build-project
+        env:
+          CONTENTFUL_SPACE_ID: ${{secrets.CONTENTFUL_SPACE_ID}}
+          CONTENTFUL_ACCESS_TOKEN: ${{secrets.CONTENTFUL_ACCESS_TOKEN}}
+          MAILCHIMP_ENDPOINT: 'https://www.gatsbyjs.org/packages/gatsby-plugin-mailchimp/?=mailchimp#mailchimp-endpoint'
+        run: |
+          npm ci
+          npm run build           
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-central-1
+      - name: Deploy
+        uses: jonelantha/gatsby-s3-action@v1
+        with:
+          dest-s3-bucket: static-website-alpacked-63fd8b0
