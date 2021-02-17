@@ -21,11 +21,6 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-  checkout_branch_and_build_a_project:      
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout-branch
-        uses: actions/checkout@v2
       - name: Use Node.js 
         uses: actions/setup-node@v2
         with:
