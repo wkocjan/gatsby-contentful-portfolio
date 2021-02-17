@@ -9,6 +9,8 @@ jobs:
   create_or_update_infrastructure:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout-branch
+        uses: actions/checkout@v2
       - name: pulumi-up
         uses: pulumi/actions@v1
         with: 
