@@ -10,7 +10,8 @@ jobs:
   Create or update infrastructure:
     runs-on: ubuntu-latest
     steps:
-      - uses: pulumi/actions@v1
+      - name: pulumi-up
+        uses: pulumi/actions@v1
         with: 
           command: up
         env: 
