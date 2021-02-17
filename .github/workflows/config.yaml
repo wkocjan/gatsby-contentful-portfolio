@@ -7,7 +7,7 @@ on:
 
 jobs:
 
-  Create or update infrastructure:
+  create_or_update_infrastructure:
     runs-on: ubuntu-latest
     steps:
       - name: pulumi-up
@@ -20,7 +20,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-  Checkout branch and build a project:      
+  checkout_branch_and_build_a_project:      
     runs-on: ubuntu-latest
     steps:
       - name: checkout-branch
