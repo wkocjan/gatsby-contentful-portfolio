@@ -5,7 +5,7 @@ on:
 
 jobs:
 
-  create_or_update_infrastructure:
+  build-and-deploy-website-to-s3:
     runs-on: ubuntu-latest
     steps:
       - name: checkout-branch

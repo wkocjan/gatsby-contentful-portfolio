@@ -6,7 +6,7 @@ on:
 
 jobs:
 
-  create_or_update_infrastructure:
+  create_or_update_infrastructure-and-build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: checkout-branch
