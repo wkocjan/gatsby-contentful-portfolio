@@ -51,6 +51,12 @@ const s3Distribution = new aws.cloudfront.Distribution("s3Distribution", {
             "HEAD",
         ],
         targetOriginId: s3OriginId,
+        forwardedValues: {
+            queryString: false,
+            cookies: {
+                forward: "none",
+            },
+        },
         viewerProtocolPolicy: "allow-all",
         minTtl: 0,
         defaultTtl: 3600,
