@@ -5,7 +5,6 @@ const awsx = require("@pulumi/awsx");
 
 const bucket = new aws.s3.Bucket("static-website-ALPACKED",
 {
-    bucket: config.targetDomain,
     acl: "public-read",
     website: {
         indexDocument: "index.html",
