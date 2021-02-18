@@ -1,4 +1,4 @@
-name: CI
+name: Contentful-publish-unpublish-CI/CD
 on:
   repository_dispatch:
     types: [publish-event]

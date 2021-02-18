@@ -1,8 +1,8 @@
-name: CI/CD
+name: push-to-master-branch-CI/CD
 
 on:
   push:
-    branches: [ CI/CD ]
+    branches: [ master ]
 
 jobs:
 
