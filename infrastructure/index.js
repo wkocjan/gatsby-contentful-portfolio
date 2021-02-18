@@ -57,7 +57,7 @@ const s3Distribution = new aws.cloudfront.Distribution("s3Distribution", {
                 forward: "none",
             },
         },
-        viewerProtocolPolicy: "allow-all",
+        viewerProtocolPolicy: "https-only",
         minTtl: 0,
         defaultTtl: 3600,
         maxTtl: 86400,
