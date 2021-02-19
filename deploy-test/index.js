@@ -33,5 +33,57 @@ const bucketPolicy = new aws.s3.BucketPolicy("bucketPolicy",
 	})),
 });
 
+
+const s3OriginId = "myS3Origin";
+const s3Distribution = new aws.cloudfront.Distribution("s3Distribution", {
+    origins: [{
+        domainName: bucket.bucketRegionalDomainName,
+        originId: s3OriginId,
+    }],
+    enabled: true,
+    defaultRootObject: "index.html",
+
+    defaultCacheBehavior: {
+        allowedMethods: [
+            "GET",
+            "HEAD",
+        ],
+        cachedMethods: [
+            "GET",
+            "HEAD",
+        ],
+        targetOriginId: s3OriginId,
+        forwardedValues: {
+            queryString: false,
+            cookies: {
+                forward: "none",
+            },
+        },
+        viewerProtocolPolicy: "https-only",
+        minTtl: 0,
+        defaultTtl: 3600,
+        maxTtl: 86400,
+    },
+    restrictions: {
+        geoRestriction: {
+            restrictionType: "whitelist",
+            locations: [
+                "UA",
+                "US",
+                "PL",
+		"UK",
+		"DE",
+            ],
+        },
+    },
+    priceClass: "PriceClass_100",
+    viewerCertificate: {
+        cloudfrontDefaultCertificate: true,
+    },
+});
+
+
+
+
 exports.bucketName = bucket.id
 
