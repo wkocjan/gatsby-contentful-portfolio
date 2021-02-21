@@ -30,14 +30,14 @@ jobs:
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-access-key-id: ${{ AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
     - name: Clean install dependencies and build
       env:
-        CONTENTFUL_SPACE_ID: ${{secrets.CONTENTFUL_SPACE_ID}}
-        CONTENTFUL_ACCESS_TOKEN: ${{secrets.CONTENTFUL_ACCESS_TOKEN}}
+        CONTENTFUL_SPACE_ID: ${{CONTENTFUL_SPACE_ID}}
+        CONTENTFUL_ACCESS_TOKEN: ${{CONTENTFUL_ACCESS_TOKEN}}
         MAILCHIMP_ENDPOINT: 'https://www.gatsbyjs.org/packages/gatsby-plugin-mailchimp/?=mailchimp#mailchimp-endpoint'
       run : |
           npm ci
