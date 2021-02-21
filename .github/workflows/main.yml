@@ -20,10 +20,10 @@ jobs:
 
     steps:
     - name: Select repo
-    - uses: actions/checkout@v2
+      uses: actions/checkout@v2
 
     - name: Use Node.js ${{ matrix.node-version }}
-    - uses: actions/setup-node@v1
+      uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
 
@@ -35,12 +35,14 @@ jobs:
         aws-region: us-east-1
 
     - name: Clean install dependencies and build
-    - run: npm ci
-    - run: npm run build --if-present
       env:
         CONTENTFUL_SPACE_ID: ${{secrets.CONTENTFUL_SPACE_ID}}
         CONTENTFUL_ACCESS_TOKEN: ${{secrets.CONTENTFUL_ACCESS_TOKEN}}
         MAILCHIMP_ENDPOINT: 'https://www.gatsbyjs.org/packages/gatsby-plugin-mailchimp/?=mailchimp#mailchimp-endpoint'
+      run : |
+          npm ci
+          npm run build
+
 
 
     - name: Create and Deploy AWS Resources
