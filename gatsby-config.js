@@ -33,6 +33,7 @@ module.exports = {
       options: {
         spaceId: CONTENTFUL_SPACE_ID,
         accessToken: CONTENTFUL_ACCESS_TOKEN,
+        forceFullSync: true,
         downloadLocal: true,
       },
     },
