@@ -1,0 +1,11 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      # pulumi
+      - curl -fsSL https://get.pulumi.com/ | sh
+      - export PATH=$PATH:$HOME/.pulumi/bin
+  build:
+    commands:
+      - update_pulumi_stack.sh
