@@ -1,0 +1,5 @@
+const cloud = require("@pulumi/cloud-aws");
+const aws = require("@pulumi/aws");
+
+// A new bucket that will work in any cloud
+const bucket = new cloud.Bucket("bucket");
