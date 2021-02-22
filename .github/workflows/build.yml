@@ -25,6 +25,7 @@ jobs:
       env:
         CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
         CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
+        MAILCHIMP_ENDPOINT: ${{ secrets.MAILCHIMP_ENDPOINT }}
   up:
     name: Update
     runs-on: ubuntu-latest

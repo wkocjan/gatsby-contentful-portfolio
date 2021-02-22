@@ -1,7 +1,7 @@
 *.pyc
 venv/
 node_modules
-.cache
 .env
+.cache
 .DS_Store
 public
