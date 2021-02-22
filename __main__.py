@@ -60,7 +60,7 @@ crawl_directory(web_contents_root_path, bucket_object_converter)
 TEN_MINUTES = 60 * 10
 
 # Create a logs bucket for the CloudFront logs
-logs_bucket = pulumi_aws.s3.Bucket('requestLogs', bucket='contentBucket-logs', acl='private')
+logs_bucket = pulumi_aws.s3.Bucket('requestLogs', acl='private')
 
 # Create the CloudFront distribution
 cdn = pulumi_aws.cloudfront.Distribution('cdn',
@@ -98,7 +98,7 @@ cdn = pulumi_aws.cloudfront.Distribution('cdn',
     )],
     # Use the certificate we generated for this distribution.
     viewer_certificate=pulumi_aws.cloudfront.DistributionViewerCertificateArgs(
-        acm_certificate_arn='cloudfront',
+        cloudfront_default_certificate=True,
         ssl_support_method='sni-only',
         #MinimumProtocolVersion='TLSv1',
         #CertificateSource=,
