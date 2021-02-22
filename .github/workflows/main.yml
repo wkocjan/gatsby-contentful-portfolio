@@ -6,8 +6,8 @@ on:
       - master
 
 env:
-  s3_bucket_name: "vlad-test-deploy-2021"
-  aws_region: "us-east-1"
+  S3_BUCKET_NAME: "vlad-test-deploy-2021"
+  AWS_REGION: "us-east-1"
 
 jobs:
   build:
@@ -16,16 +16,30 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [14.x]
 
     steps:
     - name: Select repo
       uses: actions/checkout@v2
 
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
+
+
+    - name: Clean install dependencies and build
+      env:
+        CONTENTFUL_SPACE_ID: ${{secrets.CONTENTFUL_SPACE_ID}}
+        CONTENTFUL_ACCESS_TOKEN: ${{secrets.CONTENTFUL_ACCESS_TOKEN}}
+        MAILCHIMP_ENDPOINT: ${{secrets.MAILCHIMP_ENDPOINT}}
+
+    - name: CI
+      run:
+        npm ci
+        npm run develop
+
+
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -34,18 +48,9 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
-    - name: Clean install dependencies and build
-      env:
-        CONTENTFUL_SPACE_ID: ${{secrets.CONTENTFUL_SPACE_ID}}
-        CONTENTFUL_ACCESS_TOKEN: ${{secrets.CONTENTFUL_ACCESS_TOKEN}}
-        MAILCHIMP_ENDPOINT: ${{secrets.MAILCHIMP_ENDPOINT}}
-      run : |
-          npm ci
-          npm run build
-
     - name: Create and Deploy AWS Resources
       uses: ./cdk-toolkit/cdk/lib/cdk-stack.ts
 
     - name: Copy files to the production website with the AWS CLI
       run:
-        aws s3 sync public s3://${{ env.AWS_BUCKET_NAME}}
+        aws s3 sync public s3://${{ env.S3_BUCKET_NAME }}
