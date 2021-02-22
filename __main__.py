@@ -13,7 +13,7 @@ import pulumi_aws.s3
 # Read the configuration for this stack.
 stack_config = Config()
 #target_domain = stack_config.require('targetDomain')
-path_to_website_contents = './public'
+path_to_website_contents = 'public'
 #certificate_arn = stack_config.get('certificateArn')
 
 # Create an S3 bucket configured as a website bucket.
