@@ -1,5 +1,5 @@
 {
-    "name": "gatsby-contentful-portfolio",
+    "name": "gatsbyblog",
     "main": "index.js",
     "dependencies": {
         "@pulumi/pulumi": "^2.0.0",
