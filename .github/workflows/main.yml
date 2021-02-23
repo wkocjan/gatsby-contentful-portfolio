@@ -40,7 +40,7 @@ jobs:
         uses: jonelantha/gatsby-s3-action@v1
         with:
           dest-s3-bucket: vlad-test-deploy
-          public-source-path: /
+          public-source-path: /public
           cloudfront-id-to-invalidate: ${{ secrets.CF_DISTRIBUTION }}
 
 
