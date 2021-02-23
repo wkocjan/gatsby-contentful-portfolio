@@ -7,7 +7,6 @@ on:
 
 env:
   S3_BUCKET_NAME: "vlad-test-deploy-2021"
-  AWS_REGION: "us-east-1"
 
 jobs:
   build:
@@ -44,7 +43,7 @@ jobs:
       env:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ env.AWS_REGION }}
+        aws-region: us-east-1
 
     - name: Stack
       uses: ./cdk-toolkit/cdk/lib/cdk-stack.ts
