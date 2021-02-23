@@ -43,16 +43,14 @@ jobs:
     steps:
     - name: Repository checkout
       uses: actions/checkout@v2
-
-    - name: Configuration of AWS Credentials and provision infrastructure
-      uses: aws-actions/configure-aws-credentials@v1
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ env.AWS_REGION }}
+          cdk_subcommand: 'bootstrap'
+          cdk_stack: './cdk-toolkit/cdk/lib/cdk-stack.ts'
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ${{ env.AWS_REGION }}
 
-    - name: Stack configuration
-      uses: ./cdk-toolkit/cdk/lib/cdk-stack.ts
 
   deployment:
     name: Deployment execution
