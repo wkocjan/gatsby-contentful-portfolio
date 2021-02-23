@@ -30,25 +30,23 @@ jobs:
 
     - name: Clean install dependencies and build
       env:
-        CONTENTFUL_SPACE_ID: ${{secrets.CONTENTFUL_SPACE_ID}}
-        CONTENTFUL_ACCESS_TOKEN: ${{secrets.CONTENTFUL_ACCESS_TOKEN}}
-        MAILCHIMP_ENDPOINT: ${{secrets.MAILCHIMP_ENDPOINT}}
-
-    - name: CI
+        CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
+        CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
+        MAILCHIMP_ENDPOINT: "https://www.gatsbyjs.org/packages/gatsby-plugin-mailchimp/?=mailchimp#mailchimp-endpoint"
       run:
         npm ci
-        npm run develop
+        npm run build
 
 
 
-    - name: Configure AWS Credentials
+    - name: Configure AWS Credentials and provision infrastructure
       uses: aws-actions/configure-aws-credentials@v1
-      with:
+      env:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
-    - name: Create and Deploy AWS Resources
+    - name: Stack
       uses: ./cdk-toolkit/cdk/lib/cdk-stack.ts
 
     - name: Copy files to the production website with the AWS CLI
