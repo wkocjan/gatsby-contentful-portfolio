@@ -4,61 +4,42 @@ on:
   push:
     branches:
       - master
-
-env:
-  S3_BUCKET_NAME: "vlad-test-deploy"
-
 jobs:
-  build:
-    name: Build performance
+  deploy:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x]
-
     steps:
-    - name: Repository checkout
-      uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-
-
-
-    - name: Build
-      run:
+      - name: Build
+        run:
          npm ci
          npm run build
-      env:
-        CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
-        CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
-        MAILCHIMP_ENDPOINT: "https://www.gatsbyjs.org/packages/gatsby-plugin-mailchimp/?=mailchimp#mailchimp-endpoint"
+        env:
+          CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
+          CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
+          MAILCHIMP_ENDPOINT: "https://www.gatsbyjs.org/packages/gatsby-plugin-mailchimp/?=mailchimp#mailchimp-endpoint"
 
-    - name: Save files
-      uses: actions/upload-artifact@v2
-      with:
-          name: default folder
-          path: public
-
-    - name: Download an artifact
-      uses: actions/download-artifact@v2
-      with:
-          name: default folder
-          path: public
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-    - name: Deploy
-      uses: jonelantha/gatsby-s3-action@v1
-      with:
+      - name: Deploy
+        uses: jonelantha/gatsby-s3-action@v1
+        with:
           dest-s3-bucket: vlad-test-deploy
-          public-source-path: /
           cloudfront-id-to-invalidate: ${{ secrets.CF_DISTRIBUTION }}
 
 
