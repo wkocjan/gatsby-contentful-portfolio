@@ -58,13 +58,16 @@ jobs:
     steps:
     - name: Repository checkout
       uses: actions/checkout@v2
-    - name: S3 bucket creation and synchronization
+    - name: AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+    - name: S3 bucket copy
       run:
         aws s3 cp . s3://${{ env.S3_BUCKET_NAME }}
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: ${{ env.AWS_REGION }}
+
 
 
 
