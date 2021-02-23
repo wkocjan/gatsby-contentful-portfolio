@@ -33,17 +33,7 @@ jobs:
       run: |
           npm ci
           npm run build
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-    - name: Deploy
-      uses: jonelantha/gatsby-s3-action@v1
-      with:
-          dest-s3-bucket: vlad-test-deploy
-          cloudfront-id-to-invalidate: ${{ secrets.CF_DISTRIBUTION }}
+
 
 
 
