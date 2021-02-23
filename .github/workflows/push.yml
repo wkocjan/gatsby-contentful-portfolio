@@ -2,7 +2,7 @@ name: Pulumi
 on:
   push:
     branches:
-      - master
+      - templbranch
 jobs:
   up:
     name: Update
