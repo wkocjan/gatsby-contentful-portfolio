@@ -6,8 +6,7 @@ on:
       - master
 
 env:
-  S3_BUCKET_NAME: "vlad-test-deploy-2021"
-  AWS_REGION: "us-east-1"
+  S3_BUCKET_NAME: "vlad-test-deploy"
 
 jobs:
   build:
@@ -21,19 +20,31 @@ jobs:
     steps:
     - name: Repository checkout
       uses: actions/checkout@v2
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
+
     - name: Build
       env:
         CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
         CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
         MAILCHIMP_ENDPOINT: "https://www.gatsbyjs.org/packages/gatsby-plugin-mailchimp/?=mailchimp#mailchimp-endpoint"
-      run: |
+      run:
           npm ci
           npm run build
-
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+    - name: Deploy
+      uses: jonelantha/gatsby-s3-action@v1
+      with:
+          dest-s3-bucket: vlad-test-deploy
+          cloudfront-id-to-invalidate: ${{ secrets.CF_DISTRIBUTION }}
 
 
 
