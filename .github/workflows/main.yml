@@ -51,7 +51,7 @@ jobs:
     - name: Deploy
       uses: jonelantha/gatsby-s3-action@v1
       with:
-          dest-s3-bucket: s3://${{ env.S3_BUCKET_NAME }}
+          dest-s3-bucket: ${{ env.S3_BUCKET_NAME }}
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
