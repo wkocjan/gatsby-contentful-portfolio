@@ -6,7 +6,7 @@ on:
       - master
 
 env:
-  S3_BUCKET_NAME: "vlad-test-deploy-2021"
+  S3_BUCKET_NAME: "vlad-test-deploy"
   AWS_REGION: "us-east-1"
 
 jobs:
@@ -60,12 +60,12 @@ jobs:
       uses: actions/checkout@v2
     - name: S3 bucket creation and synchronization
       run:
-        aws s3 mb s3://${{ env.S3_BUCKET_NAME }}
-        aws s3 sync . s3://${{ env.S3_BUCKET_NAME }}
+        aws s3 cp . s3://${{ env.S3_BUCKET_NAME }}
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: ${{ env.AWS_REGION }}
+
 
 
 

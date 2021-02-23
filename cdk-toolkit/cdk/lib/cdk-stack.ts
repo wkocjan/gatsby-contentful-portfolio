@@ -9,7 +9,7 @@ export class CdkStack extends cdk.Stack {
     super(scope, id, props);
 
     // S3 bucket creation
-    const websiteBucket = new s3.Bucket(this, 'vlad-test-deploy-2021', {
+    const websiteBucket = new s3.Bucket(this, 'vlad-test-deploy', {
       websiteIndexDocument: 'index.html',
       publicReadAccess: true
     });
