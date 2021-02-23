@@ -51,20 +51,19 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: ${{ env.AWS_REGION }}
 
-
   deployment:
     name: Deployment execution
     runs-on: ubuntu-latest
-    needs: infrastructure
     steps:
-    - name: Configuration of AWS Credentials and provision infrastructure
-      uses: aws-actions/configure-aws-credentials@v1
+    - uses: actions/checkout@v2
+    - uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ env.AWS_REGION }}
-
-    - name: File transfer to the production website with the AWS CLI
+    - name: S3 bucket creation and synchronization
       run:
         aws s3 mb s3://${{ env.S3_BUCKET_NAME }}
-        aws s3 sync . s3://${{ env.S3_BUCKET_NAME }}/ "--acl public-read" "--delete"
+        aws s3 sync . s3://${{ env.S3_BUCKET_NAME }}/
+      with:
+        args: --acl public-read --delete
