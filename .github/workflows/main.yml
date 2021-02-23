@@ -43,6 +43,8 @@ jobs:
     steps:
     - name: Repository checkout
       uses: actions/checkout@v2
+    - name: Bootstrap
+      uses: youyo/aws-cdk-github-actions@v2
       with:
           cdk_subcommand: 'bootstrap'
           cdk_stack: './cdk-toolkit/cdk/lib/cdk-stack.ts'
