@@ -39,7 +39,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: my-artifact
-        path: Static
+        path: C:\Users\Vlad\Static\gatsby-contentful-portfolio
 
   infrastructure:
     name: Infrastructure formation
