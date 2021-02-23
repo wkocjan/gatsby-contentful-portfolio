@@ -67,4 +67,4 @@ jobs:
     - name: File transfer to the production website with the AWS CLI
       run:
         aws s3 mb s3://${{ env.S3_BUCKET_NAME }}
-        aws s3 sync . s3://${{ env.S3_BUCKET_NAME }}/ --acl public-read --delete
+        aws s3 sync . s3://${{ env.S3_BUCKET_NAME }}/ "--acl public-read" "--delete"
