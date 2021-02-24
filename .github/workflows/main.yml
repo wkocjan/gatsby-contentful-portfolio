@@ -32,7 +32,7 @@ jobs:
 
 
       - name: cdk deploy
-        uses: jd-carroll/aws-cdk-cli-commands@v1.1.10
+        uses: youyo/aws-cdk-github-actions@v1
         with:
           cdk_subcommand: 'deploy'
           cdk_stack: 'cdk.ts'
