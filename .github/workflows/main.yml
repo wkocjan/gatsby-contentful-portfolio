@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: 12
 
-      - name: Build
+      - name: Gatsby Build
         env:
           CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
           CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
@@ -40,6 +40,6 @@ jobs:
       - name: Deployment
         uses: jonelantha/gatsby-s3-action@v1
         with:
-          dest-s3-bucket: vlad-test-deploy
+          dest-s3-bucket: vlad-deploy
           cloudfront-id-to-invalidate: ${{ secrets.CF_DISTRIBUTION }}
 
