@@ -30,13 +30,14 @@ jobs:
           restore-keys: ${{ runner.os }}-node-
 
       - name: Build
+        run:
+         npm ci
+         npm run build
         env:
           CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
           CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
           MAILCHIMP_ENDPOINT: "https://www.gatsbyjs.org/packages/gatsby-plugin-mailchimp/?=mailchimp#mailchimp-endpoint"
-        run: |
-         npm ci
-         npm run build
+
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
