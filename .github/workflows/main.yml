@@ -52,7 +52,7 @@ jobs:
       - name: Deploy
         uses: jonelantha/gatsby-s3-action@v1
         with:
-          dest-s3-bucket: vlad-test-deploy
+          dest-s3-bucket: vlad-deploy
           cloudfront-id-to-invalidate: ${{ secrets.CF_DISTRIBUTION }}
 
 
