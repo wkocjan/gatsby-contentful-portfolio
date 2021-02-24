@@ -9,13 +9,14 @@ jobs:
     name: CI CD Pipeline
     runs-on: ubuntu-latest
     steps:
+      - name: chekout repo
       - uses: actions/checkout@v2
+      - name: here comes pulumi
       - uses: pulumi/actions@v1
         with:
           command: up
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-          PULUMI_ROOT: pulumi
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
@@ -49,7 +50,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
       
-      - name: Deploy
+      - name: Deployment
         uses: jonelantha/gatsby-s3-action@v1
         with:
           dest-s3-bucket: vlad-deploy
