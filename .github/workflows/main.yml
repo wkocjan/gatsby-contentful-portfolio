@@ -6,7 +6,7 @@ on:
       - master
 jobs:
   up:
-    name: Update
+    name: CI CD Pipeline
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -21,23 +21,16 @@ jobs:
       - name: Use Node.js 12
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
-      - name: Cache node modules
-        uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-node-
+          node-version: 12
 
       - name: Build
-        run:
-         npm ci
-         npm run build
         env:
           CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
           CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
           MAILCHIMP_ENDPOINT: "https://www.gatsbyjs.org/packages/gatsby-plugin-mailchimp/?=mailchimp#mailchimp-endpoint"
-
+        run: |
+         npm ci
+         npm run build
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -45,7 +38,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-      - name: Deploy
+      - name: Deployment
         uses: jonelantha/gatsby-s3-action@v1
         with:
           dest-s3-bucket: vlad-test-deploy
