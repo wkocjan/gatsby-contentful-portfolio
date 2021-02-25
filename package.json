@@ -6,6 +6,7 @@
   "dependencies": {
     "autoprefixer": "^9.7.6",
     "classnames": "^2.2.6",
+    "deploy": "gatsby-plugin-s3 deploy",
     "dotenv": "^8.2.0",
     "framer-motion": "^1.10.3",
     "gatsby": "^2.21.10",
@@ -48,7 +49,8 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "setup": "node ./bin/setup.js",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "deploy": "gatsby-plugin-s3 deploy"
   },
   "repository": {
     "type": "git",
