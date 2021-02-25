@@ -62,12 +62,12 @@ module.exports = {
         display: `minimal-ui`,
         icon: `src/images/icon.png`,
       },
-      {
+    },
+    {
       resolve: `gatsby-plugin-s3`,
       options: {
        bucketName: 'my-bucket-07b2406',
       }
-    },
     },
   ],
 }
