@@ -24,6 +24,9 @@ jobs:
     - name: Production Build
       run: |
         yarn build
+      env:
+        CONTENTFUL_SPACE_ID: ${{secrets.CONTENTFUL_SPACE_ID }}
+        CONTENTFUL_ACCESS_TOKEN: ${{secrets.CONTENTFUL_ACCESS_TOKEN}} 
     - name: Deploy to S3
       uses: jakejarvis/s3-sync-action@master
       with:
