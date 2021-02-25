@@ -6,7 +6,7 @@ env: # Set the secret as an input
 on:
   push:
     branches:
-      - master          
+      - changes 
 jobs:
   deploy:
     runs-on: ubuntu-latest
