@@ -29,6 +29,7 @@ jobs:
         run: |
           npm ci
           npm run build
+          cat /home/runner/.npm/_logs/2021-02-25T09_36_13_499Z-debug.log
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
