@@ -1,0 +1,9 @@
+{
+    "name": "build",
+    "main": "index.js",
+    "dependencies": {
+        "@pulumi/pulumi": "^2.0.0",
+        "@pulumi/aws": "^3.25.1",
+        "@pulumi/awsx": "^0.24.0"
+    }
+}
