@@ -7,10 +7,16 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+  
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        
+      - name: DeployIaC
+        uses: pulumi/actions@v1
+        with:
+            command: up
+            
       - name: Use Node.js
         uses: actions/setup-node@v2
         with:
