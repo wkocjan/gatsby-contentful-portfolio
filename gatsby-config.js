@@ -66,7 +66,7 @@ module.exports = {
       resolve: `gatsby-plugin-s3`,
       options: {
        bucketName: 'my-bucket-07b2406',
-      },
+      }
     },
     },
   ],
