@@ -50,15 +50,6 @@ jobs:
         aws-access-key-id    :  ${{ secrets.MY_AWS_ACCESS_KEY }}
         aws-secret-access-key:  ${{ secrets.MY_AWS_SECRET_KEY }}
         aws-region           :  ${{ env.AWS_REGION_NAME }}
-    
-    - name: Create new ElasticBeanstalk Application Version
-      run : |
-        aws elasticbeanstalk create-application-version \
-        --application-name ${{ env.APPLICATION_NAME }} \
-        --source-bundle S3Bucket="${{ env.PACKAGE_S3_BUCKET_NAME }}",S3Key="${{ env.DEPLOY_PACKAGE_NAME }}" \
-        --version-label "Ver-${{ github.sha }}" \
-        --description "CoimmitSHA-${{ github.sha }}"
-       
 
     - name: Print finish Message  
       run : echo "CD_part part Finished successfully!"
