@@ -12,7 +12,8 @@ let siteBucket = new aws.s3.Bucket("s3-website-bucket");
 
 let siteBucket = new aws.s3.Bucket("s3-website-bucket", {
   website: {
-    indexDocument: "index.html",
+    indexDocument: "src/pages/index.js",
+    //indexDocument: "index.html",
   },
 });
 /*
@@ -21,7 +22,7 @@ let siteBucket = new aws.s3.Bucket("s3-website-bucket", {
 */
 
 
-let siteDir = "www"; // directory for content files
+let siteDir = "src"; // directory for content files
 
 
 // For each file in the directory, create an S3 object stored in `siteBucket`
