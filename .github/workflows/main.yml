@@ -3,7 +3,7 @@
 #---------------------------------------------------------------------
 name: Build-CI-CD-Pipeline
 env:
-  S3_BUCKET_NAME : "alpaked-test-bucket"
+  S3_BUCKET_NAME : "alpacked-test-bucket"
   APPLICATION_NAME       : "Alpacked_APP"
   ENVIRONMENT_NAME       : "App-GREEN-env"
   DEPLOY_PACKAGE_NAME       : "Alpacked_APP_${{ github.sha }}.zip"
@@ -19,11 +19,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Git clone our repo
+    - name: Git clone our repo to build machine
       uses: actions/checkout@v1
        
-    - name: Create ZIP deployment package
-      run : zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -x *.git*
+#    - name: Create ZIP deployment package
+#      run : zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -x *.git*
+
+      - name: Pulumi-Deploy-Actions
+        uses: pulumi/actions@v1
+        env:
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+            PULUMI_ROOT: pulumi
+
+
       
     - name: Configure my AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -32,8 +42,8 @@ jobs:
         aws-secret-access-key:  ${{ secrets.AWS_SECRET_KEY }}
         aws-region           :  ${{ env.AWS_REGION_NAME }}
         
-    - name: Copy Deployment package to S3 bucket
-      run : aws s3 cp ${{ env.DEPLOY_PACKAGE_NAME }}  s3://${{ env.S3_BUCKET_NAME }}/
+#    - name: Copy Deployment package to S3 bucket
+#      run : aws s3 cp ${{ env.DEPLOY_PACKAGE_NAME }}  s3://${{ env.S3_BUCKET_NAME }}/
     
     - name: Print finish Message
       run : echo "CI_part part Finished successfully!"
