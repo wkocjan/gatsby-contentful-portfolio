@@ -68,12 +68,16 @@ jobs:
       uses: pulumi/actions@v2
       with:
        command: up
+       stack-name: oleg-test
       env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-          PULUMI_ROOT: pulumi
-          STACK_NAME: dev
+          PULUMI_ROOT: /pulumi
+          
+    - name: Print finish
+      run: echo "congratulation" 
+    
           
     - name: Print finish Message  
       run : echo "::core.error"
