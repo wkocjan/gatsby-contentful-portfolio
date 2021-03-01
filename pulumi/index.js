@@ -27,7 +27,7 @@ function publicReadPolicyForBucket(bucketName) {
                 "s3:GetObject"
             ],
             Resource: [
-                `arn:aws:s3:::${bucketName}/*` // policy refers to bucket name explicitly
+                `arn:aws:s3:::s3-website-bucket-7ac1931/*` // policy refers to bucket name explicitly
             ]
         }]
     };
@@ -57,7 +57,7 @@ const s3Distribution = new aws.cloudfront.Distribution("s3Distribution", {
     defaultRootObject: "index.html",
     loggingConfig: {
         includeCookies: false,
-        bucket: "${bucketName}/*",
+        bucket: "s3-website-bucket-7ac1931",
 //        prefix: "myprefix",
     },
     defaultCacheBehavior: {
