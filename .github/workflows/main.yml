@@ -20,13 +20,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
-    - name: install node.js
-      uses: actions/setup-node@v2.1.5
-      with:
-        node-version: 14
-    - run: npm install --save @pulumi/pulumi
-    
-    
     - name: Configure my AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -34,29 +27,27 @@ jobs:
         aws-secret-access-key:  ${{ secrets.AWS_SECRET_KEY }}
         aws-region           :  ${{ env.AWS_REGION_NAME }} 
         
-    - name: Install Pulumi CLI
-      # You may pin to the exact commit or the version.
-      # uses: pulumi/action-install-pulumi-cli@9502cfe40a53a21bbbeda23422d25ead8e426c1c
-      uses: pulumi/action-install-pulumi-cli@v1.0.1
-      with:
-        # Version of the Pulumi CLI to install, or 'latest' (default).
-        pulumi-version: latest
-
     - name: Git clone our repo to build machine
-      uses: actions/checkout@v1    
-          
-    - name: Pulumi Deploy Actions
-      uses: pulumi/actions@v2
+      uses: actions/checkout@v1 
+
+#    - uses: actions/checkout@v2
+    - name: Install pulumi
+      uses: pulumi/action-install-pulumi-cli@v1.0.1
+    - name: Setup Node
+      uses: actions/setup-node@v2.1.5
       with:
-       command: up
-       stack-name: oleg-test
-       work-dir: pulumi
+        node-version: 14.x
+    - run: npm install
+    - uses: pulumi/actions@v2
+      with:
+        command: up
+        stack-name: oleg-test
+        work-dir: pulumi
       env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-#          PULUMI_ROOT: /pulumi
-          
+        PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+
+
+      
     - name: Print finish
       run: echo "congratulation" 
     
