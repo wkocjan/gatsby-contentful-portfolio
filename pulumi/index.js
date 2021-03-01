@@ -42,61 +42,129 @@ let bucketPolicy = new aws.s3.BucketPolicy("bucketPolicy", {
 
 // CLOUDFRONT
 
-const distributionArgs: aws.cloudfront.DistributionArgs = {
-    enabled: true,
-    aliases: [ config.targetDomain ],
-
-    ...
-
-    // A CloudFront distribution can configure different cache behaviors based on the request path.
-    // Here we just specify a single, default cache behavior which is just read-only requests to S3.
-    defaultCacheBehavior: {
-        targetOriginId: contentBucket.arn,
-
-        viewerProtocolPolicy: "redirect-to-https",
-        allowedMethods: ["GET", "HEAD", "OPTIONS"],
-        cachedMethods: ["GET", "HEAD", "OPTIONS"],
-
-        forwardedValues: {
-            cookies: { forward: "none" },
-            queryString: false,
+const s3OriginId = "myS3Origin";
+const s3Distribution = new aws.cloudfront.Distribution("s3Distribution", {
+    origins: [{
+        domainName: bucket.bucketRegionalDomainName,
+        originId: s3OriginId,
+        s3OriginConfig: {
+            originAccessIdentity: "origin-access-identity/cloudfront/ABCDEFG1234567",
         },
-
-        minTtl: 0,
-        defaultTtl: tenMinutes,
-        maxTtl: tenMinutes,
+    }],
+    enabled: true,
+    isIpv6Enabled: true,
+    comment: "Some comment",
+    defaultRootObject: "index.html",
+    loggingConfig: {
+        includeCookies: false,
+        bucket: "mylogs.s3.amazonaws.com",
+        prefix: "myprefix",
     },
-
-};
-
-// Creates a new Route53 DNS record pointing the domain to the CloudFront distribution.
-async function createAliasRecord(
-        targetDomain: string, distribution: aws.cloudfront.Distribution): Promise {
-    const domainParts = getDomainAndSubdomain(targetDomain);
-    const hostedZone = await aws.route53.getZone({ name: domainParts.parentDomain });
-    return new aws.route53.Record(
-        targetDomain,
+    aliases: [
+        "mysite.example.com",
+        "yoursite.example.com",
+    ],
+    defaultCacheBehavior: {
+        allowedMethods: [
+            "DELETE",
+            "GET",
+            "HEAD",
+            "OPTIONS",
+            "PATCH",
+            "POST",
+            "PUT",
+        ],
+        cachedMethods: [
+            "GET",
+            "HEAD",
+        ],
+        targetOriginId: s3OriginId,
+        forwardedValues: {
+            queryString: false,
+            cookies: {
+                forward: "none",
+            },
+        },
+        viewerProtocolPolicy: "allow-all",
+        minTtl: 0,
+        defaultTtl: 3600,
+        maxTtl: 86400,
+    },
+    orderedCacheBehaviors: [
         {
-            name: domainParts.subdomain,
-            zoneId: hostedZone.zoneId,
-            type: "A",
-            aliases: [
-                {
-                    name: distribution.domainName,
-                    zoneId: distribution.hostedZoneId,
-                    evaluateTargetHealth: true,
-                },
+            pathPattern: "/content/immutable/*",
+            allowedMethods: [
+                "GET",
+                "HEAD",
+                "OPTIONS",
             ],
-        });
-}
-
-const aRecord = createAliasRecord(config.targetDomain, cdn);
+            cachedMethods: [
+                "GET",
+                "HEAD",
+                "OPTIONS",
+            ],
+            targetOriginId: s3OriginId,
+            forwardedValues: {
+                queryString: false,
+                headers: ["Origin"],
+                cookies: {
+                    forward: "none",
+                },
+            },
+            minTtl: 0,
+            defaultTtl: 86400,
+            maxTtl: 31536000,
+            compress: true,
+            viewerProtocolPolicy: "redirect-to-https",
+        },
+        {
+            pathPattern: "/content/*",
+            allowedMethods: [
+                "GET",
+                "HEAD",
+                "OPTIONS",
+            ],
+            cachedMethods: [
+                "GET",
+                "HEAD",
+            ],
+            targetOriginId: s3OriginId,
+            forwardedValues: {
+                queryString: false,
+                cookies: {
+                    forward: "none",
+                },
+            },
+            minTtl: 0,
+            defaultTtl: 3600,
+            maxTtl: 86400,
+            compress: true,
+            viewerProtocolPolicy: "redirect-to-https",
+        },
+    ],
+    priceClass: "PriceClass_200",
+    restrictions: {
+        geoRestriction: {
+            restrictionType: "whitelist",
+            locations: [
+                "US",
+                "CA",
+                "GB",
+                "DE",
+            ],
+        },
+    },
+    tags: {
+        Environment: "production",
+    },
+    viewerCertificate: {
+        cloudfrontDefaultCertificate: true,
+    },
+});
 
 
 // Stack exports
 exports.bucketName = siteBucket.bucket;
 exports.websiteUrl = siteBucket.websiteEndpoint;
-exports.targetDomain = config.targetDomain;
-
 
 
