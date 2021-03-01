@@ -1,9 +1,9 @@
 {
-    "name": "myproject",
+    "name": "new",
     "main": "index.js",
     "dependencies": {
-        "@pulumi/aws": "^3.30.1",
-        "@pulumi/pulumi": "^2.0.0",
-        "mime": "^2.5.2"
+        "@pulumi/aws": "^3.25.1",
+        "@pulumi/awsx": "^0.24.0",
+        "@pulumi/pulumi": "^2.0.0"
     }
 }
