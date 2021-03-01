@@ -36,27 +36,21 @@ jobs:
         echo CONTENTFUL_SPACE_ID=${{ secrets.CONTENTFUL_SPACE_ID }}>> .env
         echo CONTENTFUL_ACCESS_TOKEN=${{ secrets.CONTENTFUL_ACCESS_TOKEN }} >> .env
         cat .env
-
-#    - uses: actions/checkout@v2
+      
     - name: Install pulumi
       uses: pulumi/action-install-pulumi-cli@v1.0.1
     - name: Setup Node
       uses: actions/setup-node@v2.1.5
       with:
         node-version: 14.x
-    - run: npm ci
+    - run: npm i
+    - run: npm ci    
     - uses: pulumi/actions@v2
       with:
         command: up
         stack-name: oleg-test
         work-dir: ./pulumi
-        comment-on-pr: true
+#        comment-on-pr: true
+        github-token: ${{ secrets.GH_TOKEN_FOR_PULUMI }} 
       env:
         PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-
-    - name: Print finish
-      run: echo "congratulation" 
-    
-          
-    - name: Print finish Message  
-      run : echo "::core.error"
