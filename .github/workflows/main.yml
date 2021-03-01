@@ -44,17 +44,18 @@ jobs:
       with:
         node-version: 14.x
     - run: npm i
-#    - run: npm ci    
+   
     - uses: pulumi/actions@v2
       with:
         command: up
         stack-name: oleg-test
         work-dir: ./pulumi
-#        comment-on-pr: true
         github-token: ${{ secrets.GH_TOKEN_FOR_PULUMI }} 
       env:
         PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-
+        
+    - run: gatsby build
+    
     - name: Deploy Gatsby to AWS S3
       uses: jonelantha/gatsby-s3-action@v1
       with:
