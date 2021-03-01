@@ -46,6 +46,7 @@ jobs:
     
     
     - run: npm i
+    - run: npm install -g gatsby-cli
     - run: gatsby --version
    
     - uses: pulumi/actions@v2
