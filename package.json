@@ -26,7 +26,10 @@
     "react-id-swiper": "^3.0.0",
     "swiper": "^5.3.8",
     "tailwindcss": "^1.4.4",
-    "typeface-inter": "^3.12.0"
+    "typeface-inter": "^3.12.0",
+    "@pulumi/aws": "^3.25.1",
+    "@pulumi/awsx": "^0.24.0",
+    "@pulumi/pulumi": "^2.0.0"
   },
   "devDependencies": {
     "chalk": "^3.0.0",
