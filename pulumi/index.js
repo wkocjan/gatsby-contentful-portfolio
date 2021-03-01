@@ -43,23 +43,18 @@ let bucketPolicy = new aws.s3.BucketPolicy("bucketPolicy", {
 // CLOUDFRONT
 
 const s3OriginId = "myS3Origin";
-const s3Distribution = new aws.cloudfront.Distribution("s3Distribution", {
+const s3Distribution = new aws.cloudfront.Distribution("gatsbys3Distribution", {
     origins: [{
         domainName: bucket.bucketRegionalDomainName,
         originId: s3OriginId,
         s3OriginConfig: {
-            originAccessIdentity: "origin-access-identity/cloudfront/ABCDEFG1234567",
+            originAccessIdentity: originAccessIdentity.cloudfrontAccessIdentityPath,
         },
     }],
     enabled: true,
     isIpv6Enabled: true,
-    comment: "My gatsby site comment",
+    comment: "Some comment",
     defaultRootObject: "index.html",
-    loggingConfig: {
-        includeCookies: false,
-        bucket: "s3-website-bucket-7ac1931",
-//        prefix: "myprefix",
-    },
     defaultCacheBehavior: {
         allowedMethods: [
             "DELETE",
@@ -83,12 +78,12 @@ const s3Distribution = new aws.cloudfront.Distribution("s3Distribution", {
         },
         viewerProtocolPolicy: "allow-all",
         minTtl: 0,
-        defaultTtl: 3600,
-        maxTtl: 86400,
+        defaultTtl: 120,
+        maxTtl: 120,
     },
     orderedCacheBehaviors: [
         {
-            pathPattern: "/content/immutable/*",
+            pathPattern: "/*",
             allowedMethods: [
                 "GET",
                 "HEAD",
@@ -108,41 +103,19 @@ const s3Distribution = new aws.cloudfront.Distribution("s3Distribution", {
                 },
             },
             minTtl: 0,
-            defaultTtl: 86400,
-            maxTtl: 31536000,
+            defaultTtl: 0,
+            maxTtl: 0,
             compress: true,
             viewerProtocolPolicy: "redirect-to-https",
         },
-        {
-            pathPattern: "/content/*",
-            allowedMethods: [
-                "GET",
-                "HEAD",
-                "OPTIONS",
-            ],
-            cachedMethods: [
-                "GET",
-                "HEAD",
-            ],
-            targetOriginId: s3OriginId,
-            forwardedValues: {
-                queryString: false,
-                cookies: {
-                    forward: "none",
-                },
-            },
-            minTtl: 0,
-            defaultTtl: 3600,
-            maxTtl: 86400,
-            compress: true,
-            viewerProtocolPolicy: "redirect-to-https",
-        },
+
     ],
     priceClass: "PriceClass_200",
     restrictions: {
         geoRestriction: {
             restrictionType: "whitelist",
             locations: [
+                "UA",
                 "US",
                 "CA",
                 "GB",
@@ -157,7 +130,6 @@ const s3Distribution = new aws.cloudfront.Distribution("s3Distribution", {
         cloudfrontDefaultCertificate: true,
     },
 });
-
 
 // Stack exports
 exports.bucketName = siteBucket.bucket;
