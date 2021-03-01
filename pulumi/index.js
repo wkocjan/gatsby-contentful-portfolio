@@ -53,17 +53,13 @@ const s3Distribution = new aws.cloudfront.Distribution("s3Distribution", {
     }],
     enabled: true,
     isIpv6Enabled: true,
-    comment: "Some comment",
+    comment: "My gatsby site comment",
     defaultRootObject: "index.html",
     loggingConfig: {
         includeCookies: false,
-        bucket: "mylogs.s3.amazonaws.com",
-        prefix: "myprefix",
+        bucket: "${bucketName}/*",
+//        prefix: "myprefix",
     },
-    aliases: [
-        "mysite.example.com",
-        "yoursite.example.com",
-    ],
     defaultCacheBehavior: {
         allowedMethods: [
             "DELETE",
