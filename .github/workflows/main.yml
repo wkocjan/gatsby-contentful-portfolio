@@ -51,7 +51,8 @@ jobs:
         command: up
         stack-name: oleg-test
         work-dir: ./pulumi
-        comment-on-pr: true
+#        comment-on-pr: true
+        github-token: ${{ secrets.GH_TOKEN_FOR_PULUMI }} 
       env:
         PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
 
