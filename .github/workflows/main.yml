@@ -44,7 +44,7 @@ jobs:
       uses: actions/setup-node@v2.1.5
       with:
         node-version: 14.x
-    - run: npm install
+    - run: npm ci
     - uses: pulumi/actions@v2
       with:
         command: up
