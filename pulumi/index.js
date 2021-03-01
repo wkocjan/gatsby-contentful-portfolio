@@ -7,21 +7,14 @@ const mime = require("mime");
 // Create a bucket and expose a website index document
 let siteBucket = new aws.s3.Bucket("s3-website-bucket", {
     website: {
-        indexDocument: "index.js",
+        indexDocument: "index.html",
     },
 });
 
-let siteDir = "../src/pages"; // directory for content files
-
-// For each file in the directory, create an S3 object stored in `siteBucket`
-for (let item of require("fs").readdirSync(siteDir)) {
-    let filePath = require("path").join(siteDir, item);
-    let object = new aws.s3.BucketObject(item, {
-        bucket: siteBucket,                               // reference the s3.Bucket object
-        source: new pulumi.asset.FileAsset(filePath),     // use FileAsset to point to a file
-        contentType: mime.getType(filePath) || undefined, // set the MIME type of the file
-    });
-}
+let siteDir = "."; // directory for content files
+// For each file in the directory, create an S3 
+//---
+//---
 
 // Create an S3 Bucket Policy to allow public read of all objects in bucket
 function publicReadPolicyForBucket(bucketName) {
