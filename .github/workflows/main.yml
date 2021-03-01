@@ -49,6 +49,7 @@ jobs:
     - run: npm i
     - run: npm install -g gatsby-cli
     - run: gatsby --version
+    - run: npm install -g contentful-cli
     - run: contentful -help
 
 
