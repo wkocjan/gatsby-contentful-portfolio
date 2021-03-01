@@ -50,7 +50,7 @@ jobs:
     - run: npm install -g gatsby-cli
     - run: gatsby --version
     - run: npm install -g contentful-cli
-    - run: contentful -help
+    - run: contentful --version
 
 
     - uses: pulumi/actions@v2
