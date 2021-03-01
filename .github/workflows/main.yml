@@ -24,6 +24,8 @@ jobs:
       uses: actions/setup-node@v2.1.5
       with:
         node-version: 14
+    - run: npm install
+    
     
     - name: Configure my AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
