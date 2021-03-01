@@ -48,10 +48,7 @@ jobs:
     
     - run: npm i
     - run: npm install -g gatsby-cli
-    - run: gatsby --version
     - run: npm install -g contentful-cli
-    - run: contentful --version
-    - run: npm run start
 
 
     - uses: pulumi/actions@v2
