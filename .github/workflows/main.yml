@@ -35,6 +35,7 @@ jobs:
         touch .env
         echo CONTENTFUL_SPACE_ID=${{ secrets.CONTENTFUL_SPACE_ID }}>> .env
         echo CONTENTFUL_ACCESS_TOKEN=${{ secrets.CONTENTFUL_ACCESS_TOKEN }} >> .env
+        echo MAILCHIMP_ENDPOINT=testwe21esadsad >> .env
         cat .env
       
     - name: Install pulumi
