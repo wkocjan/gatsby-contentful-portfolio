@@ -30,6 +30,13 @@ jobs:
     - name: Git clone our repo to build machine
       uses: actions/checkout@v1 
 
+    - name: Create env file
+      run: |
+        touch .env
+        echo CONTENTFUL_SPACE_ID=${{ secrets.CONTENTFUL_SPACE_ID }}>> .env
+        echo CONTENTFUL_ACCESS_TOKEN=${{ secrets.CONTENTFUL_ACCESS_TOKEN }} >> .env
+        cat .env
+
 #    - uses: actions/checkout@v2
     - name: Install pulumi
       uses: pulumi/action-install-pulumi-cli@v1.0.1
@@ -42,12 +49,10 @@ jobs:
       with:
         command: up
         stack-name: oleg-test
-        work-dir: pulumi
+        work-dir: ./pulumi
       env:
         PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
 
-
-      
     - name: Print finish
       run: echo "congratulation" 
     
