@@ -65,6 +65,11 @@ jobs:
       uses: jonelantha/gatsby-s3-action@v1
       with:
     # Destination S3 Bucket
-       dest-s3-bucket: my-gatsby-bucket-12345
+       dest-s3-bucket: s3-website-bucket-7ac1931
+       
+       
+       
+       
+       
         
 
