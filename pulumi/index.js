@@ -6,8 +6,10 @@ const mime = require("mime");
 
 // Create a bucket and expose a website index document
 let siteBucket = new aws.s3.Bucket("s3-website-bucket", {
+    bucket: config.targetDomain,
     website: {
         indexDocument: "index.html",
+        errorDocument: "404.html",
     },
 });
 
@@ -42,97 +44,108 @@ let bucketPolicy = new aws.s3.BucketPolicy("bucketPolicy", {
 
 // CLOUDFRONT
 
-const s3OriginId = "myS3Origin";
-const s3Distribution = new aws.cloudfront.Distribution("gatsbys3Distribution", {
-    origins: [{
-        domainName: bucket.bucketRegionalDomainName,
-        originId: s3OriginId,
-        s3OriginConfig: {
-            originAccessIdentity: originAccessIdentity.cloudfrontAccessIdentityPath,
-        },
-    }],
+// Sync the contents of the source directory with the S3 bucket, which will in-turn show up on the CDN.
+const webContentsRootPath = path.join(process.cwd(), config.pathToWebsiteContents);
+console.log("Syncing contents from local disk at", webContentsRootPath);
+crawlDirectory(
+    webContentsRootPath,
+    (filePath: string) => {
+        const relativeFilePath = filePath.replace(webContentsRootPath + "/", "");
+        const contentFile = new aws.s3.BucketObject(
+            relativeFilePath,
+            {
+                key: relativeFilePath,
+
+                acl: "public-read",
+                bucket: siteBucket
+                contentType: mime.getType(filePath) || undefined,
+                source: new pulumi.asset.FileAsset(filePath),
+            },
+            {
+                parent: siteBucket,
+            });
+    });
+
+const distributionArgs: aws.cloudfront.DistributionArgs = {
     enabled: true,
-    isIpv6Enabled: true,
-    comment: "Some comment",
-    defaultRootObject: "index.html",
-    defaultCacheBehavior: {
-        allowedMethods: [
-            "DELETE",
-            "GET",
-            "HEAD",
-            "OPTIONS",
-            "PATCH",
-            "POST",
-            "PUT",
-        ],
-        cachedMethods: [
-            "GET",
-            "HEAD",
-        ],
-        targetOriginId: s3OriginId,
-        forwardedValues: {
-            queryString: false,
-            cookies: {
-                forward: "none",
+    // Alternate aliases the CloudFront distribution can be reached at, in addition to https://xxxx.cloudfront.net.
+    // Required if you want to access the distribution via config.targetDomain as well.
+    aliases: [ config.targetDomain ],
+
+    // We only specify one origin for this distribution, the S3 content bucket.
+    origins: [
+        {
+            originId: siteBuckett.arn,
+            domainName: contentBucket.websiteEndpoint,
+            customOriginConfig: {
+                // Amazon S3 doesn't support HTTPS connections when using an S3 bucket configured as a website endpoint.
+                // https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginProtocolPolicy
+                originProtocolPolicy: "http-only",
+                httpPort: 80,
+                httpsPort: 443,
+                originSslProtocols: ["TLSv1.2"],
             },
         },
-        viewerProtocolPolicy: "allow-all",
-        minTtl: 0,
-        defaultTtl: 120,
-        maxTtl: 120,
-    },
-    orderedCacheBehaviors: [
-        {
-            pathPattern: "/*",
-            allowedMethods: [
-                "GET",
-                "HEAD",
-                "OPTIONS",
-            ],
-            cachedMethods: [
-                "GET",
-                "HEAD",
-                "OPTIONS",
-            ],
-            targetOriginId: s3OriginId,
-            forwardedValues: {
-                queryString: false,
-                headers: ["Origin"],
-                cookies: {
-                    forward: "none",
-                },
-            },
-            minTtl: 0,
-            defaultTtl: 0,
-            maxTtl: 0,
-            compress: true,
-            viewerProtocolPolicy: "redirect-to-https",
+    ],
+    
+    defaultRootObject: "index.html",
+
+    defaultCacheBehavior: {
+        targetOriginId: siteBucket.arn,
+
+        viewerProtocolPolicy: "redirect-to-https",
+        allowedMethods: ["GET", "HEAD", "OPTIONS"],
+        cachedMethods: ["GET", "HEAD", "OPTIONS"],
+
+        forwardedValues: {
+            cookies: { forward: "none" },
+            queryString: false,
         },
 
-    ],
-    priceClass: "PriceClass_200",
-    restrictions: {
-        geoRestriction: {
-            restrictionType: "whitelist",
-            locations: [
-                "UA",
-                "US",
-                "CA",
-                "GB",
-                "DE",
+        minTtl: 0,
+        defaultTtl: tenMinutes,
+        maxTtl: tenMinutes,
+    },
+    priceClass: "PriceClass_100",  
+  
+    customErrorResponses: [
+        { errorCode: 404, responseCode: 404, responsePagePath: "/404.html" },
+    ],  
+  
+const cdn = new aws.cloudfront.Distribution("cdn", distributionArgs);
+
+  
+// Creates a new Route53 DNS record pointing the domain to the CloudFront distribution.
+function createAliasRecord(
+    targetDomain: string, distribution: aws.cloudfront.Distribution): aws.route53.Record {
+    const domainParts = getDomainAndSubdomain(targetDomain);
+    const hostedZoneId = aws.route53.getZone({ name: domainParts.parentDomain }, { async: true }).then(zone => zone.zoneId);
+    return new aws.route53.Record(
+        targetDomain,
+        {
+            name: domainParts.subdomain,
+            zoneId: hostedZoneId,
+            type: "A",
+            aliases: [
+                {
+                    name: distribution.domainName,
+                    zoneId: distribution.hostedZoneId,
+                    evaluateTargetHealth: true,
+                },
             ],
-        },
-    },
-    tags: {
-        Environment: "production",
-    },
-    viewerCertificate: {
-        cloudfrontDefaultCertificate: true,
-    },
-});
+        });
+}
+
+const aRecord = createAliasRecord(config.targetDomain, cdn);
+  
 
 // Stack exports
 exports.bucketName = siteBucket.bucket;
 exports.websiteUrl = siteBucket.websiteEndpoint;
 
+
+export const contentBucketUri = pulumi.interpolate `s3://${siteBucket.bucket}`;
+export const contentBucketWebsiteEndpoint = siteBucket.websiteEndpoint;
+export const cloudFrontDomain = cdn.domainName;
+export const targetDomainEndpoint = `https://${config.targetDomain}/`;
 
