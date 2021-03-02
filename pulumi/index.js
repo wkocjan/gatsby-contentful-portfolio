@@ -49,6 +49,13 @@ const contentBucket = new aws.s3.Bucket("contentBucket",
 
     });
 
+const stackConfig = new pulumi.Config("static-website");
+const config = {
+    // pathToWebsiteContents is a relativepath to the website's contents.
+    pathToWebsiteContents: stackConfig.require("pathToWebsiteContents"),
+    // targetDomain is the domain/host to serve content at.
+    targetDomain: stackConfig.require("targetDomain"),
+};
 
 const webContentsRootPath = path.join(process.cwd(), config.pathToWebsiteContents);
 console.log("Syncing contents from local disk at", webContentsRootPath);
