@@ -1,10 +1,5 @@
 "use strict";
 
-import * as fs from "fs";
-import * as mime from "mime";
-import * as path from "path";
-
-
 const aws = require("@pulumi/aws");
 const pulumi = require("@pulumi/pulumi");
 const mime = require("mime");
@@ -57,9 +52,9 @@ const contentBucket = new aws.s3.Bucket("contentBucket",
 const stackConfig = new pulumi.Config("static-website");
 const config = {
     // pathToWebsiteContents is a relativepath to the website's contents.
-    pathToWebsiteContents: stackConfig.require("pathToWebsiteContents"),
+    pathToWebsiteContents: stackConfig.require("."),
     // targetDomain is the domain/host to serve content at.
-    targetDomain: stackConfig.require("targetDomain"),
+    targetDomain: stackConfig.require("s3-website-bucket-7ac1931"),
 };
 
 
