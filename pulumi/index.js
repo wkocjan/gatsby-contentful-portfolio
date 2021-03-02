@@ -1,4 +1,11 @@
 "use strict";
+import * as aws from "@pulumi/aws";
+import * as pulumi from "@pulumi/pulumi";
+
+import * as fs from "fs";
+import * as mime from "mime";
+import * as path from "path";
+
 
 const aws = require("@pulumi/aws");
 const pulumi = require("@pulumi/pulumi");
