@@ -57,6 +57,21 @@ const config = {
     targetDomain: stackConfig.require("targetDomain"),
 };
 
+
+function crawlDirectory(dir: string, f: (_: string) => void) {
+    const files = fs.readdirSync(dir);
+    for (const file of files) {
+        const filePath = `${dir}/${file}`;
+        const stat = fs.statSync(filePath);
+        if (stat.isDirectory()) {
+            crawlDirectory(filePath, f);
+        }
+        if (stat.isFile()) {
+            f(filePath);
+        }
+    }
+}
+
 const webContentsRootPath = path.join(process.cwd(), config.pathToWebsiteContents);
 console.log("Syncing contents from local disk at", webContentsRootPath);
 crawlDirectory(
