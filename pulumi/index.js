@@ -13,7 +13,7 @@ let siteBucket = new aws.s3.Bucket("s3-website-bucket", {
     },
 });
 
-let siteDir = "."; // directory for content files
+let siteDir = "./public"; // directory for content files
 // For each file in the directory, create an S3 
 //---
 //---
@@ -42,9 +42,14 @@ let bucketPolicy = new aws.s3.BucketPolicy("bucketPolicy", {
 });
 
 
-// CLOUDFRONT
 
-// Sync the contents of the source directory with the S3 bucket, which will in-turn show up on the CDN.
+// CLOUDFRONT
+const contentBucket = new aws.s3.Bucket("contentBucket",
+    {
+
+    });
+
+
 const webContentsRootPath = path.join(process.cwd(), config.pathToWebsiteContents);
 console.log("Syncing contents from local disk at", webContentsRootPath);
 crawlDirectory(
@@ -57,41 +62,23 @@ crawlDirectory(
                 key: relativeFilePath,
 
                 acl: "public-read",
-                bucket: siteBucket
+                bucket: contentBucket,
                 contentType: mime.getType(filePath) || undefined,
                 source: new pulumi.asset.FileAsset(filePath),
             },
             {
-                parent: siteBucket,
+                parent: contentBucket,
             });
     });
 
 const distributionArgs: aws.cloudfront.DistributionArgs = {
     enabled: true,
-    // Alternate aliases the CloudFront distribution can be reached at, in addition to https://xxxx.cloudfront.net.
-    // Required if you want to access the distribution via config.targetDomain as well.
     aliases: [ config.targetDomain ],
 
-    // We only specify one origin for this distribution, the S3 content bucket.
-    origins: [
-        {
-            originId: siteBuckett.arn,
-            domainName: contentBucket.websiteEndpoint,
-            customOriginConfig: {
-                // Amazon S3 doesn't support HTTPS connections when using an S3 bucket configured as a website endpoint.
-                // https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginProtocolPolicy
-                originProtocolPolicy: "http-only",
-                httpPort: 80,
-                httpsPort: 443,
-                originSslProtocols: ["TLSv1.2"],
-            },
-        },
-    ],
-    
-    defaultRootObject: "index.html",
-
+    // A CloudFront distribution can configure different cache behaviors based on the request path.
+    // Here we just specify a single, default cache behavior which is just read-only requests to S3.
     defaultCacheBehavior: {
-        targetOriginId: siteBucket.arn,
+        targetOriginId: contentBucket.arn,
 
         viewerProtocolPolicy: "redirect-to-https",
         allowedMethods: ["GET", "HEAD", "OPTIONS"],
@@ -106,25 +93,19 @@ const distributionArgs: aws.cloudfront.DistributionArgs = {
         defaultTtl: tenMinutes,
         maxTtl: tenMinutes,
     },
-    priceClass: "PriceClass_100",  
-  
-    customErrorResponses: [
-        { errorCode: 404, responseCode: 404, responsePagePath: "/404.html" },
-    ],  
-  
-const cdn = new aws.cloudfront.Distribution("cdn", distributionArgs);
 
-  
+};
+
 // Creates a new Route53 DNS record pointing the domain to the CloudFront distribution.
-function createAliasRecord(
-    targetDomain: string, distribution: aws.cloudfront.Distribution): aws.route53.Record {
+async function createAliasRecord(
+    targetDomain: string, distribution: aws.cloudfront.Distribution): Promise {
     const domainParts = getDomainAndSubdomain(targetDomain);
-    const hostedZoneId = aws.route53.getZone({ name: domainParts.parentDomain }, { async: true }).then(zone => zone.zoneId);
+    const hostedZone = await aws.route53.getZone({ name: domainParts.parentDomain });
     return new aws.route53.Record(
         targetDomain,
         {
             name: domainParts.subdomain,
-            zoneId: hostedZoneId,
+            zoneId: hostedZone.zoneId,
             type: "A",
             aliases: [
                 {
@@ -137,15 +118,13 @@ function createAliasRecord(
 }
 
 const aRecord = createAliasRecord(config.targetDomain, cdn);
-  
 
 // Stack exports
 exports.bucketName = siteBucket.bucket;
 exports.websiteUrl = siteBucket.websiteEndpoint;
 
-
-export const contentBucketUri = pulumi.interpolate `s3://${siteBucket.bucket}`;
-export const contentBucketWebsiteEndpoint = siteBucket.websiteEndpoint;
-export const cloudFrontDomain = cdn.domainName;
-export const targetDomainEndpoint = `https://${config.targetDomain}/`;
+//export const contentBucketUri = pulumi.interpolate `s3://${siteBucket.bucket}`;
+//export const contentBucketWebsiteEndpoint = siteBucket.websiteEndpoint;
+//export const cloudFrontDomain = cdn.domainName;
+//export const targetDomainEndpoint = `https://${config.targetDomain}/`;
 
