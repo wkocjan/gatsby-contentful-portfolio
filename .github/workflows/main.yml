@@ -1,0 +1,33 @@
+name: CI/CD pipeline to build and deploy a static website
+
+on:
+  # Triggers the workflow on push events but only for the master branch
+  push:
+    branches: [ master ]  
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  
+  build:    
+    runs-on: ubuntu-latest
+
+    steps:
+    
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v2           
+        with:
+          node-version: '14.x'
+ 
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Install AWS CDK Toolkit and Gatsby CLI
+        run: npm install -g aws-cdk gatsby-cli
+		  
+      - name: Run a production build into ./public
+        run: gatsby build
