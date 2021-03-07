@@ -28,3 +28,13 @@ jobs:
 
       - name: Install AWS CDK Toolkit and Gatsby CLI
         run: npm install -g aws-cdk gatsby-cli
+
+      - name: Set up a content model and create a configuration file
+        run: |
+          npm run setup -- \
+            --spaceId ${{ secrets.CONTENTFUL_SPACE_ID }} \
+            --managementToken ${{ secrets.CONTENTFUL_MANAGEMENT_TOKEN }} \
+            --accessToken ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
+
+      - name: Run a production build into ./public
+        run: gatsby build
