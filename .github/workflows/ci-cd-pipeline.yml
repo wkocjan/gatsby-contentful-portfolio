@@ -1,5 +1,9 @@
 name: CI/CD pipeline to build and deploy a static website
 
+env:
+  AWS_REGION: 'eu-central-1'
+  AWS_S3_BUCKET_NAME: 'alpaked-task-s3-bucket'
+
 on:
   # Triggers the workflow on push events but only for the master branch
   push:
@@ -27,7 +31,7 @@ jobs:
         run: npm ci
 
       - name: Install AWS CDK Toolkit and Gatsby CLI
-        run: npm install -g aws-cdk gatsby-cli
+        run: npm install -g aws-cdk@1.92.0 gatsby-cli
 
       - name: Set up a content model and create a configuration file
         run: |
@@ -38,3 +42,16 @@ jobs:
 
       - name: Run a production build into ./public
         run: gatsby build
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Create and provision AWS infrastructure with AWS CDK
+        run: |
+          cd aws-cdk-git-actions/
+          cdk deploy --require-approval never
+          cd -
