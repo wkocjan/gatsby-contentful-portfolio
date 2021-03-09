@@ -7,7 +7,7 @@ env:
 on:
   # Triggers the workflow on push events but only for the master branch
   push:
-    branches: [ ci-cd-pipeline ]
+    branches: [ master ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
