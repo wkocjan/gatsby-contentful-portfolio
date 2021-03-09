@@ -52,6 +52,7 @@ jobs:
 
       - name: Create and provision AWS infrastructure with AWS CDK
         run: |
-          cd aws-cdk-git-actions/
+          cd ./aws-cdk-git-actions
+          pip3 install -r requirements.txt
           cdk deploy --require-approval never
           cd -
