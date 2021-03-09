@@ -61,3 +61,13 @@ jobs:
         run: |
           aws s3 sync ./public s3://${{ env.AWS_S3_BUCKET_NAME }} \
             --acl public-read
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Check a website availability
+        run: |
+          curl -Is https://${{ env.AWS_S3_BUCKET_NAME }}.s3.${{ env.AWS_REGION }}.amazonaws.com/index.html | head -n -1
