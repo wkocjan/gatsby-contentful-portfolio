@@ -1,0 +1,28 @@
+# The stackbit.yaml file lets you define the characteristic of your website
+# needed to make your theme, or project, work with Stackbit. For more info about
+# stackbit.yaml configuration visit https://www.stackbit.com/docs/stackbit-yaml/
+stackbitVersion: ~0.3.0
+ssgName: gatsby
+cmsName: contentful
+
+# The "buildCommand" and the "publishDir" properties are used to configure the
+# serverless deployment platform when Stackbit creates a new site from this theme.
+buildCommand: npm run build
+publishDir: out
+
+# The "import" object defines how Stackbit should provision Contentful when
+# creating a new site from this theme via https://app.stackbit.com/create.
+import:
+  type: contentful
+  contentFile: contentful/export.json
+  spaceIdEnvVar: CONTENTFUL_SPACE_ID
+  accessTokenEnvVar: CONTENTFUL_ACCESS_TOKEN
+
+# To allow creating and duplicating pages in Stackbit Studio, as well as other
+# advanced editing capabilities, specify which models describe your website
+# pages and specify their "urlPath" patterns. The urlPath should have the same
+# logic used in createPage in gatsby-node.js
+models:
+  blogPost:
+    type: page
+    urlPath: '/blog/{slug}'
