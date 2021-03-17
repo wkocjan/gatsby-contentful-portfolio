@@ -23,6 +23,6 @@ import:
 # pages and specify their "urlPath" patterns. The urlPath should have the same
 # logic used in createPage in gatsby-node.js
 models:
-  blogPost:
+  portfolio:
     type: page
-    urlPath: '/blog/{slug}'
+    urlPath: '/{slug}'
