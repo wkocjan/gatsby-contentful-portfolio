@@ -8,7 +8,7 @@ describe('Test the landing page', () => {
     cy.get('[data-cy=Home]').contains('Home')
     cy.get('[data-cy=About]').contains('About')
     cy.get('[data-cy=Blog]').contains('Blog')
-    cy.get('[data-cy=Portfolio]').contains('Portfolio')
+    cy.get('[data-cy=Travel-Log]').contains('Travel-Log')
   })
 
   it('Test blog post on Landing page', () => {
@@ -17,8 +17,8 @@ describe('Test the landing page', () => {
     })
   })
 
-  it('Test portfolio post on Landing page', () => {
-    cy.get('[data-cy=portfolio').then(() => {
+  it('Test Travel-Log post on Landing page', () => {
+    cy.get('[data-cy=travel-log').then(() => {
       cy.get('[data-cy=rome-2019').contains('Rome 2019')
     })
   })
@@ -33,9 +33,9 @@ describe('Test the landing page', () => {
     cy.url().should('include', '/blog')
   })
 
-  it('Navigate to Portfolio page', () => {
-    cy.get('[data-cy=Portfolio]').click()
-    cy.url().should('include', '/portfolio')
+  it('Navigate to Travel-Log page', () => {
+    cy.get('[data-cy=Travel-Log]').click()
+    cy.url().should('include', '/travel-log')
   })
 
   it('Navigate to Home page', () => {

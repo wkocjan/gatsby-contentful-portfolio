@@ -1,7 +1,7 @@
 import { graphql } from "gatsby"
 import React from "react"
 import SiteMetadata from "../components/SiteMetadata"
-import Newsletter from "../components/Newsletter"
+// import Newsletter from "../components/Newsletter"
 import Layout from "../layouts/Layout"
 
 export default props => {
@@ -33,7 +33,7 @@ export default props => {
           </div>
         </div>
       </div>
-      <Newsletter />
+      {/* <Newsletter /> */}
     </Layout>
   )
 }

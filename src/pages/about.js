@@ -3,7 +3,7 @@ import Img from "gatsby-image"
 import React from "react"
 import Layout from "../layouts/Layout"
 import Quotes from "../components/Quotes"
-import Newsletter from "../components/Newsletter"
+// import Newsletter from "../components/Newsletter"
 import SiteMetadata from "../components/SiteMetadata"
 
 const AboutPage = ({ data }) => {
@@ -59,7 +59,7 @@ const AboutPage = ({ data }) => {
         </div>
       </div>
     </div>
-    <Newsletter />
+    {/* <Newsletter /> */}
   </Layout>
 )}
 

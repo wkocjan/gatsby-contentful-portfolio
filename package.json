@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-contentful-portfolio",
-  "description": "Portfolio theme for GatsbyJS",
+  "name": "g-portfolio",
+  "description": "Blog and Portfolio of Kranthi Lakum",
   "version": "1.0.0",
-  "author": "Wojciech Kocjan <wojciech@kocjan.net>",
+  "author": "Kranthi Lakum <kranthi.lakum@gmail.com>",
   "dependencies": {
     "@hot-loader/react-dom": "^16.14.0",
     "autoprefixer": "^9.8.6",
@@ -45,8 +45,12 @@
   },
   "keywords": [
     "gatsby",
+    "graphql",
+    "contentful",
+    "blog",
     "portfolio",
-    "contentful"
+    "projects",
+    "netlify"
   ],
   "license": "MIT",
   "scripts": {
@@ -62,9 +66,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/wkocjan/gatsby-contentful-portfolio"
+    "url": "https://github.com/kranthilakum/g-portfolio"
   },
   "bugs": {
-    "url": "https://github.com/wkocjan/gatsby-contentful-portfolio/issues"
+    "url": "https://github.com/kranthilakum/g-portfolio/issues"
   }
 }

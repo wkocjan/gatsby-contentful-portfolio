@@ -2,7 +2,7 @@ import { graphql } from "gatsby"
 import React from "react"
 import Cards from "../components/Cards"
 import Layout from "../layouts/Layout"
-import Newsletter from "../components/Newsletter"
+// import Newsletter from "../components/Newsletter"
 import SiteMetadata from "../components/SiteMetadata"
 
 const BlogPage = ({ data }) => {
@@ -17,7 +17,7 @@ const BlogPage = ({ data }) => {
           <div className="container">No articles found.</div>
         )}
       </div>
-      <Newsletter />
+      {/* <Newsletter /> */}
     </Layout>
   )
 }
