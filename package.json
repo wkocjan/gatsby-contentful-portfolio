@@ -41,6 +41,7 @@
     "cypress": "^5.4.0",
     "inquirer": "^7.3.3",
     "netlify-plugin-cypress": "^1.4.1",
+    "postcss": "^8.2.8",
     "prettier": "^1.19.1"
   },
   "keywords": [

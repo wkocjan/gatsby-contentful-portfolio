@@ -15,21 +15,24 @@ const IndexPage = ({ data }) => {
       <SiteMetadata title="Home" description="Blog and Portfolio of Kranthi Lakum" />
       <Hero data={data.hero.nodes} />
       <div className="bg-gray-100 py-12 lg:py-16">
-        {blogNodes && blogNodes.map((item, index) =>
-          item && item.length > 0 ? (
-            <Cards key={index} items={item} heading="Latest Blog posts" />
-          ) : (
-            <div className="container">No blog posts found.</div>
-          )
-        )}
-
-        {travelLogNodes && travelLogNodes.map((item, index) =>
-          item && item.length > 0 ? (
-            <Cards key={index} items={item} heading="Latest Travel logs"/>
-          ) : (
-            <div className="container">No travel logs found.</div>
-          )
-        )}
+        <div className="pb-6">
+          {blogNodes && blogNodes.map((item, index) =>
+            item && item.length > 0 ? (
+              <Cards key={index} items={item} heading="Latest Blog posts" />
+            ) : (
+              <div className="container">No blog posts found.</div>
+            )
+          )}
+        </div>
+        <div className="pt-6">
+          {travelLogNodes && travelLogNodes.map((item, index) =>
+            item && item.length > 0 ? (
+              <Cards key={index} items={item} heading="Latest Travel logs"/>
+            ) : (
+              <div className="container">No travel logs found.</div>
+            )
+          )}
+        </div>
       </div>
       {/* <Newsletter /> */}
     </Layout>

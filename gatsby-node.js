@@ -60,10 +60,10 @@ exports.createPages = ({ graphql, actions }) => {
       }
 
       if (data && data.portfolio) {
-        const portfolioTemplate = path.resolve("./src/templates/travel-log-item.jsx")
+        const portfolioTemplate = path.resolve("./src/templates/travelogue-item.jsx")
         data.portfolio.nodes.map(({ slug }) => {
           createPage({
-            path: `/travel-log/${slug}`,
+            path: `/travelogue/${slug}`,
             component: portfolioTemplate,
             context: { slug },
           })

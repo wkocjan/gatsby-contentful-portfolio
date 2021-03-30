@@ -14,7 +14,7 @@ module.exports = {
       { name: "Home", to: "/" },
       { name: "About", to: "/about" },
       { name: "Blog", to: "/blog"},
-      { name: "Travel-Log", to: "/travel-log"}
+      { name: "Travelogue", to: "/travelogue"}
     ],
     links: {
       facebook: "https://www.facebook.com/kranthilakum",

@@ -5,7 +5,7 @@ import React from "react"
 
 const Card = props => {
   const { id, category, name, slug, summary, thumbnail } = props
-  const categories = ['blog', 'travel-log']
+  const categories = ['blog', 'travelogue']
   return (
     <div className="bg-white h-full shadow-sm rounded-md overflow-hidden group">
       {categories.map(item => {
