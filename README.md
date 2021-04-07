@@ -7,6 +7,10 @@
 Live demo is available at:
 https://gatsby-contentful-portfolio.netlify.com/
 
+Click the button below to create a new site from this theme using Stackbit:
+
+[![Create with Stackbit](https://assets.stackbit.com/badge/create-with-stackbit.svg)](https://app.stackbit.com/create?theme=https://github.com/youvalv/gatsby-contentful-portfolio&utm_source=theme-readme&utm_medium=referral)
+
 ## Screenshot
 
 ![The home page](screenshot.png?raw=true)
