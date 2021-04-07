@@ -8,7 +8,7 @@ cmsName: contentful
 # The "buildCommand" and the "publishDir" properties are used to configure the
 # serverless deployment platform when Stackbit creates a new site from this theme.
 buildCommand: npm run build
-publishDir: out
+publishDir: public
 
 # The "import" object defines how Stackbit should provision Contentful when
 # creating a new site from this theme via https://app.stackbit.com/create.
