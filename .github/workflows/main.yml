@@ -1,0 +1,52 @@
+name: CI/CD pipeline
+env:
+  S3_BUCKET_NAME: "alpacked-test-bucket"
+  APP_NAME: "gatsby-portfolio"
+  ENVIRONMENT_NAME: "gatsby-portfolio-env"
+  DEPLOY_PACKAGE_NAME: "gatsby_portfolio_hash_${{ github.sha }}.zip"
+  AWS_REGION: "eu-central-1"
+
+on:
+  push:
+    branches: master
+
+jobs:
+  CI-part:
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Pull our repository
+          uses: actions/checkout@v2
+
+        - name: Create zip deploy package
+          run: zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -x .git *.git*
+        
+        - name: AWS secret credentials
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+            aws-region: ${{ env.AWS_REGION }}
+          
+        - name: Copy Deploy to S3-Bucket
+          run: aws s3 cp ${{ env.DEPLOY_PACKAGE_NAME }} s3://${{ env.S3_BUCKET_NAME }}/
+        
+        - name: Successful message!
+          run: echo "Successful!"
+  CD-part:
+      runs-on: ubuntu-latest
+      needs: CI-part
+
+      steps:
+        - name: AWS secret credentials
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+            aws-region: ${{ env.AWS_REGION }}
+        
+        - name: Invalidate Cloudfront
+          uses: chetan/invalidate-cloudfront-action@v2
+          env:
+            DISTRIBUTION: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+            PATHS: '/*'
