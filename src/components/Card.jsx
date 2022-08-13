@@ -1,9 +1,10 @@
-import Img from "gatsby-image"
-import { graphql, Link } from "gatsby"
-import PropTypes from "prop-types"
 import React from "react"
+import PropTypes from "prop-types"
+import { graphql, Link } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 const Card = props => {
+  // thumbnail.localFile.childImageSharp.fluid
   const { id, category, name, slug, summary, thumbnail } = props
   const categories = ['blog', 'travelogue']
   return (
@@ -13,7 +14,7 @@ const Card = props => {
           category && category === item && (
             <Link key={id} to={`/${item}/${slug}`} data-cy={category}>
               <div className="group-hover:opacity-75 transition duration-150 ease-in-out">
-                <Img fluid={thumbnail.localFile.childImageSharp.fluid} alt={name} />
+                <GatsbyImage alt={name} />
               </div>
               <div className="p-4 sm:p-5" data-cy={slug}>
                 <h3 className="sm:text-lg text-gray-900 font-semibold">{name}</h3>

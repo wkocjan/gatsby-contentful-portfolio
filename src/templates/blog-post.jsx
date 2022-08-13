@@ -4,11 +4,11 @@ import SiteMetadata from "../components/SiteMetadata"
 // import Newsletter from "../components/Newsletter"
 import Layout from "../layouts/Layout"
 
-export default props => {
-  const {
+const BlogPost = (props) => {
+    const {
     title,
     summary,
-    description
+    childContentfulBlogPostDescriptionTextNode
   } = props.data.item
 
   return (
@@ -24,9 +24,9 @@ export default props => {
               <h1 className="text-3xl leading-tight font-extrabold tracking-tight text-gray-900 sm:text-4xl mb-1">
                 {title}
               </h1>
-              {description && (
+              {childContentfulBlogPostDescriptionTextNode && (
                 <div className="my-4 text-base text-gray-800 whitespace-pre-line">
-                  <article dangerouslySetInnerHTML={{__html: description.childMarkdownRemark.html}}></article>
+                  <article dangerouslySetInnerHTML={{__html: childContentfulBlogPostDescriptionTextNode.childMarkdownRemark.html}}></article>
                 </div>
               )}
             </div>
@@ -37,13 +37,14 @@ export default props => {
     </Layout>
   )
 }
+export default BlogPost;
 
 export const query = graphql`
   query BlogItemQuery($slug: String!) {
     item: contentfulBlogPost(slug: { eq: $slug }) {
       title
       summary
-      description {
+      childContentfulBlogPostDescriptionTextNode {
         childMarkdownRemark {
           html
         }

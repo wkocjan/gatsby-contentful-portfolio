@@ -60,7 +60,9 @@ exports.createPages = ({ graphql, actions }) => {
       }
 
       if (data && data.portfolio) {
-        const portfolioTemplate = path.resolve("./src/templates/travelogue-item.jsx")
+        const portfolioTemplate = path.resolve(
+          "./src/templates/travelogue-item.jsx"
+        )
         data.portfolio.nodes.map(({ slug }) => {
           createPage({
             path: `/travelogue/${slug}`,
@@ -88,10 +90,10 @@ exports.createPages = ({ graphql, actions }) => {
 
 exports.onCreateWebpackConfig = ({ getConfig, stage }) => {
   const config = getConfig()
-  if (stage.startsWith('develop') && config.resolve) {
+  if (stage.startsWith("develop") && config.resolve) {
     config.resolve.alias = {
       ...config.resolve.alias,
-      'react-dom': '@hot-loader/react-dom'
+      "react-dom": "@hot-loader/react-dom",
     }
   }
 }

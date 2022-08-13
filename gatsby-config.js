@@ -32,6 +32,7 @@ module.exports = {
     author: `Kranthi Lakum`,
   },
   plugins: [
+    `gatsby-plugin-image`,
     {
       resolve: `gatsby-plugin-postcss`,
       options: {

@@ -1,6 +1,7 @@
-import { graphql } from "gatsby"
-import Img from "gatsby-image"
 import React from "react"
+import { graphql } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
+
 import SiteMetadata from "../components/SiteMetadata"
 import Button from "../components/Button"
 import Cards from "../components/Cards"
@@ -8,8 +9,10 @@ import Carousel from "../components/Carousel"
 // import Newsletter from "../components/Newsletter"
 import Layout from "../layouts/Layout"
 
-export default props => {
-  const {
+const Travelogue = (props) => {
+  // thumbnail.localFile.publicURL
+  // gallery[0].localFile.childImageSharp.fluid
+    const {
     description,
     gallery,
     name,
@@ -24,17 +27,13 @@ export default props => {
       <SiteMetadata
         title={name}
         description={summary}
-        image={thumbnail.localFile.publicURL}
       />
       <div className="bg-gray-0 py-12 lg:py-16">
         <div className="container">
           <div className="flex flex-wrap">
             <div className="w-full lg:w-2/3 pb-8">
               {gallery && gallery.length === 1 && (
-                <Img
-                  fluid={gallery[0].localFile.childImageSharp.fluid}
-                  alt={name}
-                />
+                <GatsbyImage alt={name} />
               )}
               {gallery && gallery.length > 1 && <Carousel images={gallery} />}
             </div>
@@ -73,6 +72,7 @@ export default props => {
     </Layout>
   )
 }
+export default Travelogue;
 
 export const query = graphql`
   query PortfolioItemQUery($slug: String!) {

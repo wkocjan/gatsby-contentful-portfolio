@@ -22,7 +22,7 @@ The website is live at: https://www.lakum.in
 ## Features
 
 - Integration with [Contentful](https://www.contentful.com) - automated content model & demo setup
-- Responsive/adaptive images via [gatsby-image](https://www.gatsbyjs.org/packages/gatsby-image/)
+- Responsive/adaptive images via [gatsby-plugin-image](https://www.gatsbyjs.org/packages/gatsby-plugin-image/)
 - Uses utility-first [TailwindCSS](https://tailwindcss.com/) framework
 - Integration with [Mailchimp](https://mailchimp.com/) - newsletter form
 - Responsive design (desktop / mobile)

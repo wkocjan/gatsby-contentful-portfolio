@@ -1,6 +1,6 @@
 import { graphql } from "gatsby"
-import Img from "gatsby-image"
 import React from "react"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Layout from "../layouts/Layout"
 import Hero from "../components/Hero"
 import Quotes from "../components/Quotes"
@@ -8,6 +8,7 @@ import Quotes from "../components/Quotes"
 import SiteMetadata from "../components/SiteMetadata"
 
 const AboutPage = ({ data }) => {
+  const image = getImage(data.author.image)
   const experience =
     new Date().getFullYear() - new Date(2013, 11, 21).getFullYear()
   return (
@@ -55,10 +56,10 @@ const AboutPage = ({ data }) => {
               </div>
             </div>
             <div className="w-full md:w-1/2 xl:w-2/5 md:pl-12">
-              <Img
-                fluid={data.author.image.localFile.childImageSharp.fluid}
-                alt="Kranthi Lakum"
+              <GatsbyImage
                 className="rounded-md shadow-md"
+                image={image}
+                alt="Kranthi Lakum"
               />
             </div>
           </div>
@@ -81,13 +82,13 @@ export const query = graphql`
         quote
       }
       image {
-        localFile {
-          childImageSharp {
-            fluid(maxWidth: 600, maxHeight: 480, quality: 85) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
+        gatsbyImageData(
+          formats: [PNG, AUTO, WEBP]
+          placeholder: BLURRED
+          width: 600
+          height: 480
+          quality: 85
+        )
       }
     }
   }
