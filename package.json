@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@hot-loader/react-dom": "^16.14.0",
-    "autoprefixer": "^9.8.6",
     "classnames": "^2.2.6",
     "d3-geo": "^1.12.1",
     "dotenv": "^8.2.0",
@@ -42,18 +41,19 @@
     "react-icons": "^3.11.0",
     "react-id-swiper": "^3.0.0",
     "swiper": "^5.4.5",
-    "tailwindcss": "^1.9.6",
     "topojson-client": "^3.1.0",
     "typeface-inter": "^3.15.0"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.8",
     "chalk": "^3.0.0",
     "contentful-import": "^7.9.14",
     "cypress": "^5.4.0",
     "inquirer": "^7.3.3",
     "netlify-plugin-cypress": "^2.2.0",
-    "postcss": "^8.2.8",
-    "prettier": "^1.19.1"
+    "postcss": "^8.4.16",
+    "prettier": "^1.19.1",
+    "tailwindcss": "^3.1.8"
   },
   "keywords": [
     "gatsby",
