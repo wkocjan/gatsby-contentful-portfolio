@@ -1,12 +1,10 @@
 @tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
   @apply .bg-white .font-sans .antialiased;
 }
-
-@tailwind components;
-
-@tailwind utilities;
 
 .container {
   @apply .max-w-screen-xl .mx-auto .px-4;
@@ -25,19 +23,12 @@ body {
 }
 
 pre {
-  background: #272822;
-  border-radius: 5px;
-  padding: 10px;
+  @apply bg-gray-800 border-gray-800 rounded-md p-10;
 }
 
 blockquote {
-  background: #f9f9f9;
-  border-left: 10px solid #ccc;
-  margin: 1.5em 10px;
-  padding: 0.5em 10px;
-  quotes: "\201C""\201D""\2018""\2019";
+  @apply bg-green-300 border border-l-8 border-green-300;
 }
-
 blockquote:before {
   color: #ccc;
   content: open-quote;

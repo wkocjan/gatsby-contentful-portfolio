@@ -1,2 +1,10 @@
+[build.environment]
+# cache Cypress binary in local "node_modules" folder
+# so Netlify caches it
+CYPRESS_CACHE_FOLDER = "./node_modules/CypressBinary"
+# set TERM variable for terminal output
+TERM = "xterm"
+
 [[plugins]]
-  package = "netlify-plugin-cypress"
+# runs Cypress tests against the deployed URL
+package = "netlify-plugin-cypress"

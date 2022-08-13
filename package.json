@@ -3,6 +3,17 @@
   "description": "Blog and Portfolio of Kranthi Lakum",
   "version": "1.0.0",
   "author": "Kranthi Lakum <kranthi.lakum@gmail.com>",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "postinstall": "node ./bin/hello.js",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "setup": "node ./bin/setup.js",
+    "clean": "gatsby clean",
+    "cy:open": "node_modules/.bin/cypress open"
+  },
   "dependencies": {
     "@hot-loader/react-dom": "^16.14.0",
     "autoprefixer": "^9.8.6",
@@ -40,7 +51,7 @@
     "contentful-import": "^7.9.14",
     "cypress": "^5.4.0",
     "inquirer": "^7.3.3",
-    "netlify-plugin-cypress": "^1.4.1",
+    "netlify-plugin-cypress": "^2.2.0",
     "postcss": "^8.2.8",
     "prettier": "^1.19.1"
   },
@@ -54,17 +65,6 @@
     "netlify"
   ],
   "license": "MIT",
-  "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "postinstall": "node ./bin/hello.js",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "setup": "node ./bin/setup.js",
-    "clean": "gatsby clean",
-    "cy:open": "node_modules/.bin/cypress open"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/kranthilakum/g-portfolio"

@@ -1,2 +1,2 @@
-require('./src/styles/style.css')
-require('./src/styles/atomic-dark.css')
+import "./src/styles/global.css"
+import "./src/styles/atomic-dark.css"

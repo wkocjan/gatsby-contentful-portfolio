@@ -13,8 +13,8 @@ module.exports = {
     menu: [
       { name: "Home", to: "/" },
       { name: "About", to: "/about" },
-      { name: "Blog", to: "/blog"},
-      { name: "Travelogue", to: "/travelogue"}
+      { name: "Blog", to: "/blog" },
+      { name: "Travelogue", to: "/travelogue" },
     ],
     links: {
       facebook: "https://www.facebook.com/kranthilakum",
@@ -24,7 +24,7 @@ module.exports = {
       linkedin: "https://www.linkedin.com/in/kranthilakum/",
       github: "https://www.github.com/kranthilakum",
       flickr: "https://www.flickr.com/photos/prince-apple/",
-      stackOverflow: "https://stackoverflow.com/users/1509209/kranthi-lakum"
+      stackOverflow: "https://stackoverflow.com/users/1509209/kranthi-lakum",
     },
     locale: "en",
     title: `Kranthi Lakum`,
@@ -32,7 +32,12 @@ module.exports = {
     author: `Kranthi Lakum`,
   },
   plugins: [
-    `gatsby-plugin-postcss`,
+    {
+      resolve: `gatsby-plugin-postcss`,
+      options: {
+        postCssPlugins: [require(`tailwindcss`)(`./tailwind.config.js`)],
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-contentful`,
@@ -52,10 +57,8 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        plugins: [
-          `gatsby-remark-mathjax`
-        ]
-      }
+        plugins: [`gatsby-remark-mathjax`],
+      },
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
@@ -94,7 +97,7 @@ module.exports = {
         inlineCodeMarker: null,
         showLineNumbers: false,
         noInlineHighlight: false,
-      }
-    }
+      },
+    },
   ],
 }

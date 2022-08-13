@@ -1,7 +1,7 @@
 import React from "react"
 
 const Hero = ({data}) => {
-  const author = data[0];
+  const author = data;
   return (
     <div className="container py-12 lg:pb-16">
       <h1 data-cy="author" className="text-3xl sm:text-4xl font-extrabold leading-tight tracking-tight text-gray-900">
