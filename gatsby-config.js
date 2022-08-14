@@ -57,9 +57,9 @@ module.exports = {
     },
     {
       resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [`gatsby-remark-mathjax`],
-      },
+      // options: {
+      //   plugins: [`gatsby-remark-mathjax`],
+      // },
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,

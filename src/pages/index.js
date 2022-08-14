@@ -21,7 +21,7 @@ const IndexPage = ({ data }) => {
           {blogNodes &&
             blogNodes.map((item, index) =>
               item && item.length > 0 ? (
-                <Cards key={index} items={item} heading="Latest Blog posts" />
+                <Cards key={index} items={item} heading="Latest blog posts" />
               ) : (
                 <div className="container">No blog posts found.</div>
               )
@@ -31,7 +31,7 @@ const IndexPage = ({ data }) => {
           {travelLogNodes &&
             travelLogNodes.map((item, index) =>
               item && item.length > 0 ? (
-                <Cards key={index} items={item} heading="Latest Travel logs" />
+                <Cards key={index} items={item} heading="Recent travel logs" />
               ) : (
                 <div className="container">No travel logs found.</div>
               )

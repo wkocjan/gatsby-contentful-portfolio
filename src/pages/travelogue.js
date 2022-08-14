@@ -9,7 +9,14 @@ import SiteMetadata from "../components/SiteMetadata"
 const PortfolioPage = ({ data }) => {
   return (
     <Layout>
-      <SiteMetadata title="Porfolio" description="Travel-Log of Kranthi Lakum" />
+      <SiteMetadata
+        title="Porfolio"
+        description="Travel-Log of Kranthi Lakum"
+      />
+
+      <div className="bg-gray-100">
+        <WorldMap data={data.author.locations} />
+      </div>
 
       <div className="bg-gray-100 py-12 lg:py-16">
         {data.portfolio && data.portfolio.nodes.length > 0 ? (
@@ -17,12 +24,6 @@ const PortfolioPage = ({ data }) => {
         ) : (
           <div className="container">No projects found.</div>
         )}
-      </div>
-
-      <hr />
-
-      <div className="bg-gray-100">
-        <WorldMap data={data.author.locations} />
       </div>
 
       {/* <Newsletter /> */}

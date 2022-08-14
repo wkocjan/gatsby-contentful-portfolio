@@ -26,7 +26,7 @@ export default BlogPage
 
 export const query = graphql`
   query BlogQuery {
-    blog: allContentfulBlogPost(sort: {fields: [publishDate], order: DESC}) {
+    blog: allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
       nodes {
         id
         category
@@ -41,9 +41,13 @@ export const query = graphql`
         thumbnail: heroImage {
           localFile {
             childImageSharp {
-              fluid(maxWidth: 444, maxHeight: 342, quality: 85) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
+              gatsbyImageData(
+                formats: [AUTO, PNG, WEBP]
+                layout: CONSTRAINED
+                placeholder: BLURRED
+                quality: 85
+                transformOptions: { fit: COVER, cropFocus: ATTENTION }
+              )
             }
           }
         }

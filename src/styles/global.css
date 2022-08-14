@@ -5,39 +5,35 @@
 body {
   @apply bg-white font-sans antialiased;
 }
-
 .container {
   @apply max-w-screen-xl mx-auto px-4;
 }
-
 @screen md {
   .container {
     @apply px-6;
   }
 }
-
 @screen lg {
   .container {
     @apply px-8;
   }
 }
-
-pre {
-  @apply bg-gray-800 border-gray-800 rounded-md p-10;
-}
-
-blockquote {
-  @apply bg-green-300 border border-l-8 border-green-300;
-}
-blockquote:before {
-  color: #ccc;
-  content: open-quote;
-  font-size: 4em;
-  line-height: 0.1em;
-  margin-right: 0.25em;
-  vertical-align: -0.4em;
-}
-
-blockquote p {
-  display: inline;
+@layer base {
+  article > pre {
+    @apply bg-gray-800 border-gray-800 rounded-md p-10;
+  }
+  article > blockquote {
+    @apply bg-emerald-300 border border-l-8 border-emerald-300;
+  }
+  article > blockquote:before {
+    color: #ccc;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+  }
+  article > blockquote p {
+    display: inline;
+  }
 }

@@ -6,14 +6,14 @@
 
 ![The home page](screenshot.png?raw=true)
 
-### Gatsby starter theme integrated with [Contentful](https://www.contentful.com)
+### Gatsby v3 integrated with [Contentful](https://www.contentful.com)
 
 [![Gatsby](https://img.shields.io/badge/🌐-Gatsby-%23542c85)](https://gatsbyjs.com)
 [![Reactjs](https://img.shields.io/badge/🌐-ReactJs-%2361dafb)](https://www.reactjs.org)
 [![Netlify](https://img.shields.io/badge/🌐-Netlify-teal)](https://www.netlify.com)
 [![Contentful](https://img.shields.io/badge/🌐-Contentful-%23306bc4)](https://www.contentful.com)
 [![Mailchimp](https://img.shields.io/badge/🌐-Mailchimp-%23004e56)](https://mailchimp.com)
-[![Earthly](https://img.shields.io/badge/🌐-Earthly-blue)](https://earthly.dev)
+[![Docker](https://img.shields.io/badge/🌐-Docker-blue)](https://www.docker.com)
 
 ## Demo
 
@@ -35,7 +35,7 @@ Install [Node package manager (NPM)](https://nodejs.org/) (if you haven't alread
 
 To use this project you have to have a Contentful account. If you don't have one yet you can register at [www.contentful.com/sign-up](https://www.contentful.com/sign-up/).
 
-### Original source code.
+### Forked from
 
 ```
 $ git clone git@github.com:wkocjan/gatsby-contentful-portfolio.git
@@ -114,7 +114,7 @@ docker-compose up
 docker-compose down
 ```
 
-## Troubleshooting Issues
+## Troubleshooted Issues
 
 **[Issue #17173](https://github.com/gatsbyjs/gatsby/issues/17173)**: Unable to find plugin "gatsby-plugin-sharp"
 

@@ -19,7 +19,7 @@ const Cards = ({ heading, items, hideLastItemOnMobile = false }) => {
             })}
             key={item.id}
           >
-            <Card {...item} />
+            <Card {...item} hideImage={true} />
           </div>
         ))}
       </div>

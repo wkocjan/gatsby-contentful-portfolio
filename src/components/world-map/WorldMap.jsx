@@ -23,7 +23,7 @@ const WorldMap = ({data}) => {
   }
 
   const handleCountryClick = (countryIndex) => {
-    console.info("Clicked on country: ", worlddata[countryIndex])
+    console.info("Region: ", worlddata[countryIndex])
   }
 
   const handleMarkerClick = (i) => {
@@ -32,7 +32,7 @@ const WorldMap = ({data}) => {
 
   return (
     <div className="container">
-      <div className="flex flex-wrap mx-32 lg:mx-36">
+      <div className="flex justify-center mx-32 lg:mx-36">
         {isDesktop ? (
         <svg width={ 800 } height={ 450 } viewBox="0 0 800 450">
           <g id="countries" className="countries">

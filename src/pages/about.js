@@ -14,11 +14,11 @@ const AboutPage = ({ data }) => {
   return (
     <Layout>
       <SiteMetadata title="About" description="Sample description" />
-      <Hero data={data.author} />
       <div className="bg-gray-100">
         <div className="container py-12 lg:pb-16">
           <div className="flex flex-wrap">
             <div className="w-full md:w-1/2 xl:w-3/5 pb-8 md:pb-0">
+              <Hero data={data.author} />
               <div className="mt-4 leading-loose">
                 <p>
                   I am a software developer living in Hyderabad, India. I have{" "}

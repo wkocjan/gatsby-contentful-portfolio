@@ -1,13 +1,12 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Swiper from "react-id-swiper"
-import { GatsbyImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
-// import "swiper/css/swiper.css"
+import 'swiper/css'
 import "./Carousel.css"
 
 export const Carousel = ({ images }) => {
-  // image.localFile.childImageSharp.fluid
   const swiperParams = {
     autoplay: {
       delay: 2500,
@@ -15,16 +14,20 @@ export const Carousel = ({ images }) => {
     },
     pagination: {
       el: ".swiper-pagination",
-      type: "bullets",
-      clickable: true,
+      type: "progressbar",
     },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    }
   }
   return (
     <Swiper {...swiperParams}>
       {images.map(image => {
+        const imageProp = getImage(image.localFile.childImageSharp)
         return (
           <div key={`slide_${image.id}`}>
-            <GatsbyImage alt={image.title} />
+            <GatsbyImage image={imageProp} alt={image.title} />
           </div>
         )
       })}

@@ -8,7 +8,7 @@ const BlogPost = (props) => {
     const {
     title,
     summary,
-    childContentfulBlogPostDescriptionTextNode
+    description
   } = props.data.item
 
   return (
@@ -17,16 +17,16 @@ const BlogPost = (props) => {
         title={title}
         description={summary}
       />
-      <div className="bg-gray-0 py-12 lg:py-16">
-        <div className="container">
+      <div className="bg-gray-100 py-12 lg:py-16">
+        <div className="container bg-white py-12">
           <div className="flex flex-wrap">
-            <div className="w-full lg:pl-8 xl:pl-12 text-justify">
+            <div className="w-full text-justify">
               <h1 className="text-3xl leading-tight font-extrabold tracking-tight text-gray-900 sm:text-4xl mb-1">
                 {title}
               </h1>
-              {childContentfulBlogPostDescriptionTextNode && (
+              {description && (
                 <div className="my-4 text-base text-gray-800 whitespace-pre-line">
-                  <article dangerouslySetInnerHTML={{__html: childContentfulBlogPostDescriptionTextNode.childMarkdownRemark.html}}></article>
+                  <article dangerouslySetInnerHTML={{__html: description.childMarkdownRemark.html}}></article>
                 </div>
               )}
             </div>
@@ -44,7 +44,7 @@ export const query = graphql`
     item: contentfulBlogPost(slug: { eq: $slug }) {
       title
       summary
-      childContentfulBlogPostDescriptionTextNode {
+      description: childContentfulBlogPostDescriptionTextNode {
         childMarkdownRemark {
           html
         }
