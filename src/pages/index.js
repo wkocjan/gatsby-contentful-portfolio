@@ -52,7 +52,7 @@ export const query = graphql`
         ...PortfolioCard
       }
     }
-    blog: allContentfulBlogPost(filter: { createdAt: { gte: "2020-03-01" } }) {
+    blog: allContentfulBlogPost(filter: { createdAt: { gte: "2021-06-30" } }) {
       nodes {
         ...BlogPostCard
       }
