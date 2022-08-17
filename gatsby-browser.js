@@ -1,2 +1,2 @@
-import "./src/styles/global.css"
-import "./src/styles/atomic-dark.css"
+require("./src/styles/global.css")
+require("prismjs/themes/prism-okaidia.css")

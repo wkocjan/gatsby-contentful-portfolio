@@ -13,8 +13,12 @@ const ErrorPage = () => (
             Error 404
           </h1>
 
-          <h2 className="text-xl leading-tight font-semibold tracking-tight text-blue-600 sm:text-2xl">
-            The page doesn't exists.
+          <h2 className="text-xl leading-tight font-semibold tracking-tight text-emerald-500 sm:text-2xl">
+            The page doesn't exists{" "}
+            <span role="img" aria-label="person shrugging">
+              🤷🏻
+            </span>
+            .
           </h2>
         </div>
       </div>

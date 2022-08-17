@@ -57,9 +57,20 @@ module.exports = {
     },
     {
       resolve: `gatsby-transformer-remark`,
-      // options: {
-      //   plugins: [`gatsby-remark-mathjax`],
-      // },
+      options: {
+        plugins: [
+          // `gatsby-remark-mathjax`,
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              classPrefix: "language-",
+              inlineCodeMarker: null,
+              showLineNumbers: false,
+              noInlineHighlight: false,
+            },
+          },
+        ],
+      },
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
@@ -89,15 +100,6 @@ module.exports = {
         rejected: true,
         tailwind: true,
         ignore: ["Carousel.css", "swiper.css"],
-      },
-    },
-    {
-      resolve: `gatsby-remark-prismjs`,
-      options: {
-        classPrefix: "language-",
-        inlineCodeMarker: null,
-        showLineNumbers: false,
-        noInlineHighlight: false,
       },
     },
   ],
