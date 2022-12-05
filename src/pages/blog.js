@@ -9,10 +9,9 @@ const BlogPage = ({ data }) => {
   return (
     <Layout>
       <SiteMetadata title="Blog" description="Blog of Kranthi Lakum" />
-
       <div className="bg-gray-100 py-12 lg:py-16">
         {data.blog && data.blog.nodes.length > 0 ? (
-          <Cards items={data.blog.nodes} />
+          <Cards items={data.blog.nodes} heading="Blog" />
         ) : (
           <div className="container">No articles found.</div>
         )}

@@ -26,8 +26,8 @@ const Travelogue = (props) => {
         description={summary}
         image={thumbnail.localFile.publicURL}
       />
-      <div className="bg-gray-0 py-12 lg:py-16">
-        <div className="container">
+      <div className="bg-gray-100 py-12 lg:py-16">
+        <div className="container bg-white py-12">
           <div className="flex flex-wrap">
             <div className="w-full lg:w-2/3 pb-8">
               {gallery && gallery.length === 1 && (
