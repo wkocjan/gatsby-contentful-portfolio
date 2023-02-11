@@ -6,12 +6,12 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
+    "clean": "gatsby clean",
+    "serve": "gatsby serve",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "postinstall": "node ./bin/hello.js",
     "start": "npm run develop",
-    "serve": "gatsby serve",
     "setup": "node ./bin/setup.js",
-    "clean": "gatsby clean",
     "cy:open": "node_modules/.bin/cypress open"
   },
   "dependencies": {
@@ -43,7 +43,8 @@
     "react-id-swiper": "^4.0.0",
     "swiper": "^8.3.2",
     "topojson-client": "^3.1.0",
-    "typeface-inter": "^3.18.1"
+    "typeface-inter": "^3.18.1",
+    "tailwindcss": "^3.1.8"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.8",
@@ -53,8 +54,7 @@
     "inquirer": "^7.3.3",
     "netlify-plugin-cypress": "^2.2.0",
     "postcss": "^8.4.16",
-    "prettier": "^2.7.1",
-    "tailwindcss": "^3.1.8"
+    "prettier": "^2.7.1"
   },
   "keywords": [
     "gatsby",
