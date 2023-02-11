@@ -21,7 +21,7 @@ const IndexPage = ({ data }) => {
           {blogNodes &&
             blogNodes.map((item, index) =>
               item && item.length > 0 ? (
-                <Cards key={index} items={item} heading="Latest blog posts" />
+                <Cards key={index} items={item} heading="Recent blog posts" />
               ) : (
                 <div className="container">No blog posts found.</div>
               )
@@ -47,12 +47,20 @@ export default IndexPage
 
 export const query = graphql`
   query HomeQuery {
-    portfolio: allContentfulPortfolio {
+    portfolio: allContentfulPortfolio(limit: 5,
+      sort: {
+        order: DESC,
+        fields: createdAt
+      }) {
       nodes {
         ...PortfolioCard
       }
     }
-    blog: allContentfulBlogPost(filter: { createdAt: { gte: "2021-06-30" } }) {
+    blog: allContentfulBlogPost(limit: 5,
+      sort: {
+        order: DESC,
+        fields: publishDate
+      }) {
       nodes {
         ...BlogPostCard
       }

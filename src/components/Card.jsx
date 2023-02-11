@@ -4,7 +4,7 @@ import { graphql, Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 const Card = props => {
-  const { id, category, name, slug, summary, thumbnail, tags, hideImage } = props
+  const { id, category, name, slug, summary, thumbnail, tags, hideImage, createdAt, publishDate } = props
   const image = getImage(thumbnail && thumbnail.localFile.childImageSharp)
   const categories = ['blog', 'travelogue']
   return (
@@ -51,6 +51,7 @@ export const query = graphql`
     category
     name
     slug
+    createdAt(formatString: "DD-MM-YYYY")
     thumbnail {
       localFile {
         childImageSharp {
@@ -63,7 +64,6 @@ export const query = graphql`
         }
       }
     }
-    summary
   }
   fragment BlogPostCard on ContentfulBlogPost {
     id
